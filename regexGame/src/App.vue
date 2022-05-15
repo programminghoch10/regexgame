@@ -1,6 +1,28 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
-var a = 0;
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: 'App',
+  components: {},
+  data() {
+    return {
+      name: 'link',
+      flipCard: HTMLElement
+     
+    }
+  },
+  methods: {
+    selectAnswer(name: string ){
+
+
+     
+    flipCard = this.$refs[name];
+    .classList.add("flip-card-inner-animation");
+      
+      
+    },
+  }
+});
 </script>
 
 <template>
@@ -9,11 +31,11 @@ var a = 0;
       <h1>RegEx Game</h1>
       <div class="regexbox"><h2 class="regex" id="regex">a*b</h2></div>
       <div class="row" id="rowbox">
-        <div class="col-4 answerbox" onclick="selectAnswer('answer-0')">
+        <div class="col-4 answerbox" @click="selectAnswer('answer0')">
           <div class="flip-card">
-            <div class="flip-card-inner" id="answer-0">
+            <div class="flip-card-inner" ref="answer0">
               <div class="flip-card-front">
-                <h3>abbba</h3>
+                <h3>aab</h3>
               </div>
               <div class="flip-card-back">
                 <div class="wrong-flip-card-back">Wrong</div>
@@ -21,9 +43,9 @@ var a = 0;
             </div>
           </div>
         </div>
-        <div class="col-4 answerbox" onclick="selectAnswer('answer-1')">
+        <div class="col-4 answerbox" @click="selectAnswer('answer1')">
           <div class="flip-card">
-            <div class="flip-card-inner" id="answer-1">
+            <div class="flip-card-inner" ref="answer1">
               <div class="flip-card-front">
                 <h3>abbba</h3>
               </div>
@@ -35,9 +57,9 @@ var a = 0;
             </div>
           </div>
         </div>
-        <div class="col-4 answerbox" onclick="selectAnswer('answer-2')">
+        <div class="col-4 answerbox" @click="selectAnswer('answer2')">
           <div class="flip-card">
-            <div class="flip-card-inner" id="answer-2">
+            <div class="flip-card-inner" ref="answer2">
               <div class="flip-card-front">
                 <h3>abbba</h3>
               </div>
