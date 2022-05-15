@@ -1,23 +1,17 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from '@/components/HelloWorld.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+<h1>RegExGame</h1>
+<br>
+<div class="game">
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
+  <div>Points</div>
+</div>
 
-  <RouterView />
+  
 </template>
 
 <style>
@@ -29,6 +23,12 @@ import HelloWorld from '@/components/HelloWorld.vue'
   padding: 2rem;
 
   font-weight: normal;
+}
+
+.game {
+  background-color: aqua;
+  height: 2000px;
+  width: 80%;
 }
 
 header {
