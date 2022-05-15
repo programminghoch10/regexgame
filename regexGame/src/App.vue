@@ -1,119 +1,144 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView } from "vue-router";
+var a = 0;
 </script>
 
 <template>
-
-<h1>RegExGame</h1>
-<br>
-<div class="game">
-
-  <div>Points</div>
-</div>
-
-  
+  <div class="gamebox col-8">
+    <div class="headerbox">
+      <h1>RegEx Game</h1>
+      <div class="regexbox"><h2 class="regex" id="regex">a*b</h2></div>
+      <div class="row" id="rowbox">
+        <div class="col-4 answerbox" onclick="selectAnswer('answer-0')">
+          <div class="flip-card">
+            <div class="flip-card-inner" id="answer-0">
+              <div class="flip-card-front">
+                <h3>abbba</h3>
+              </div>
+              <div class="flip-card-back">
+                <div class="wrong-flip-card-back">Wrong</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 answerbox" onclick="selectAnswer('answer-1')">
+          <div class="flip-card">
+            <div class="flip-card-inner" id="answer-1">
+              <div class="flip-card-front">
+                <h3>abbba</h3>
+              </div>
+              <div class="flip-card-back">
+                <div class="wrong-flip-card-back">
+                  Wrong
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 answerbox" onclick="selectAnswer('answer-2')">
+          <div class="flip-card">
+            <div class="flip-card-inner" id="answer-2">
+              <div class="flip-card-front">
+                <h3>abbba</h3>
+              </div>
+              <div class="flip-card-back">
+                <div class="wrong-flip-card-back">
+                  Wrong
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h4>Points: {{a}}</h4>
+    </div>
+  </div>
 </template>
 
 <style>
-@import '@/assets/base.css';
+@import "@/assets/base.css";
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
 }
 
-.game {
-  background-color: aqua;
-  height: 2000px;
-  width: 80%;
+.gamebox {
+  margin-left: 20%;
+  margin-right: 20%;
+  border: 2px black solid;
 }
 
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+.regex {
+  margin-left: 20%;
+  margin-right: 20%;
+  border: 2px black solid;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
+.headerbox {
+  margin-top: 20px;
   text-align: center;
-  margin-top: 2rem;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+#rowbox {
+  margin-right: 0px;
+  margin-left: 0px;
 }
 
-nav a.router-link-exact-active:hover {
+.answerbox {
+  height: 200px;
+}
+
+/* Answer Card Style */
+
+.flip-card {
+  border: solid black 2px;
   background-color: transparent;
+  width: 100%;
+  height: 100%;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
 }
 
-nav a:first-of-type {
-  border: 0;
+/* Do an horizontal flip when you move the mouse over the flip box container */
+ .flip-card-inner-animation {
+  transform: rotateY(180deg);
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+/* Position the front and back side */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  color: black;
+}
 
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+/* Style the back side */
+.flip-card-back {
+  transform: rotateY(180deg);
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.wrong-flip-card-back {
+  background-color: red;
+  color: black;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.right-flip-card-back {
+  background-color: green;
+  color: black;
 }
 </style>
