@@ -2,11 +2,13 @@
 import { defineComponent } from "vue";
 import {Question} from './components/question';
 import AnswerBox from './components/AnswerBox.vue';
+import RegexBox from './components/RegexBox.vue';
 
 export default {
   name: 'App',
   components: {
-    AnswerBox
+    AnswerBox,
+    RegexBox
   },
   props: {
     question : Question
@@ -23,10 +25,7 @@ export default {
 
 <template>
   <div class="gamebox">
-    <div class="headerbox">
-      
-      <h1>RegEx Game</h1>
-      <div class="regexbox"><h2 class="regex" id="regex">d|a(b)*c</h2></div>
+    <regex-box></regex-box>
       <div class="row" id="rowbox">
         <answer-box></answer-box>
         <answer-box></answer-box>
@@ -34,7 +33,6 @@ export default {
       </div>
       <h4>Points: 5 {{}}</h4>
     </div>
-  </div>
 </template>
 
 
@@ -54,11 +52,6 @@ export default {
   margin-left: 20%;
   margin-right: 20%;
   border: 2px black solid;
-}
-
-.headerbox {
-  margin-top: 20px;
-  text-align: center;
 }
 
 #rowbox {

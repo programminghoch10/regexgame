@@ -26,7 +26,6 @@ export default {
     };
   },
   mounted() {
-    this.initCards();
   },
   methods: {
       selectAnswer(name: string ){
