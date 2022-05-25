@@ -3,7 +3,7 @@
           <div class="flip-card">
             <div class="flip-card-inner" ref="answer0">
               <div class="flip-card-front">
-                <h3>ac</h3>
+                <h3>{{answer}}</h3>
               </div>
               <div class="flip-card-back">
                 <div class="wrong-flip-card-back">Wrong</div>
@@ -16,8 +16,7 @@
 <script lang="ts">
 export default {
   props: {
-    onError: Function,
-    turn: Boolean,
+    answer: String
   },
   data() {
     return {
@@ -29,7 +28,9 @@ export default {
   },
   methods: {
       selectAnswer(name: string ){
-    this.$refs[name].classList.add("flip-card-inner-animation");
+    //this.$refs[name].classList.add("flip-card-inner-animation");
+      console.log("Click on answer");
+      
       }
   },
 };

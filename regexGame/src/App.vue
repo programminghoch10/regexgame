@@ -1,6 +1,5 @@
 <script lang="ts">
-import { defineComponent } from "vue";
-import {Question} from './components/question';
+import {Game} from './components/game';
 import AnswerBox from './components/AnswerBox.vue';
 import RegexBox from './components/RegexBox.vue';
 
@@ -10,11 +9,10 @@ export default {
     AnswerBox,
     RegexBox
   },
-  props: {
-    question : Question
-  },
   data() {
     return {
+      answers: ["hallo","hey","ccol"],
+      game : new Game(new RegExp("ab+c", "i"))
     }
   },
   methods: {},
@@ -25,11 +23,13 @@ export default {
 
 <template>
   <div class="gamebox">
-    <regex-box></regex-box>
+    <regex-box :regExp="game.regEx"></regex-box>
       <div class="row" id="rowbox">
-        <answer-box></answer-box>
-        <answer-box></answer-box>
-        <answer-box></answer-box>
+        <answer-box
+        v-for="answer in answers"
+        :key="answer"
+        :answer="answer"
+        ></answer-box>
       </div>
       <h4>Points: 5 {{}}</h4>
     </div>

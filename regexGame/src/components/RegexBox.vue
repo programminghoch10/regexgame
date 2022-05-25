@@ -2,18 +2,15 @@
   <div>
     <div class="headerbox">
       <h1>RegEx Game</h1>
-      <div class="regexbox"><h2 class="regex" id="regex">d|a(b)*c</h2></div>
+      <div class="regexbox"><h2 class="regex" id="regex">{{regExp}}</h2></div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-const rExp : RegExp = /[A-G]/g;
-        console.log(rExp);
-
 export default {
   props: {
-    regExp: RegExp
+    regExp: RegExp 
   },
   data() {
     return {
@@ -21,6 +18,7 @@ export default {
     };
   },
   mounted() {
+   
   },
   methods: {
     newRegEx(){
