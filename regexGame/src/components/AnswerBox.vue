@@ -1,5 +1,5 @@
 <template>
-  <div class="col-4 answerbox" @click="selectAnswer('answer0')">
+  <div class="col-4 answerbox" @click="click()">
           <div class="flip-card">
             <div class="flip-card-inner" ref="answer0">
               <div class="flip-card-front">
@@ -14,19 +14,27 @@
 </template>
 
 <script lang="ts">
+import {Game} from './game';
 export default {
   props: {
-    answer: String
+    answer: String,
+    game: Game
   },
   data() {
     return {
-      cards: [],
-      score: 0,
+      
     };
   },
   mounted() {
   },
   methods: {
+
+click(){
+  console.log("okay");
+  
+
+},
+    
       selectAnswer(name: string ){
     //this.$refs[name].classList.add("flip-card-inner-animation");
       console.log("Click on answer");

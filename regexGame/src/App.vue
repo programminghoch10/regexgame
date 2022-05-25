@@ -11,8 +11,7 @@ export default {
   },
   data() {
     return {
-      answers: ["hallo","hey","ccol"],
-      game : new Game(new RegExp("ab+c", "i"))
+      game : new Game(new RegExp("ab+c", "i"),["hallo","hey","cool"])
     }
   },
   methods: {},
@@ -26,9 +25,10 @@ export default {
     <regex-box :regExp="game.regEx"></regex-box>
       <div class="row" id="rowbox">
         <answer-box
-        v-for="answer in answers"
+        v-for="answer in game.answers"
         :key="answer"
         :answer="answer"
+        :game="game"
         ></answer-box>
       </div>
       <h4>Points: 5 {{}}</h4>
