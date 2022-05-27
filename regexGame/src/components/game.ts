@@ -8,5 +8,7 @@ export class Game {
         this.answers = answers;
     }
 
-    
+    public pointsUp(): void {
+        this.points++;
+    } 
 }

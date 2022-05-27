@@ -1,45 +1,44 @@
 <template>
   <div class="col-4 answerbox" @click="click()">
-          <div class="flip-card">
-            <div class="flip-card-inner" ref="answer0">
-              <div class="flip-card-front">
-                <h3>{{answer}}</h3>
-              </div>
-              <div class="flip-card-back">
-                <div class="wrong-flip-card-back">Wrong</div>
-              </div>
-            </div>
-          </div>
+    <div class="flip-card">
+      <div class="flip-card-inner" ref="answer0">
+        <div class="flip-card-front">
+          <h3>{{ answer }}</h3>
         </div>
+        <div class="flip-card-back">
+          <div class="wrong-flip-card-back">Wrong</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import {Game} from './game';
+import { Game } from "./game";
 export default {
   props: {
     answer: String,
     game: Game
   },
+
   data() {
-    return {
-      
-    };
+    return {};
   },
-  mounted() {
-  },
+  mounted() {},
+
   methods: {
-
-click(){
-  console.log("okay");
-  
-
-},
-    
-      selectAnswer(name: string ){
-    //this.$refs[name].classList.add("flip-card-inner-animation");
-      console.log("Click on answer");
+    click() {
+      console.log(this.answer);
       
-      }
+      
+      
+
+    },
+
+    selectAnswer(name: string) {
+      //this.$refs[name].classList.add("flip-card-inner-animation");
+      console.log("Click on answer");
+    },
   },
 };
 </script>
@@ -66,11 +65,10 @@ click(){
   transition: transform 0.8s;
   transform-style: preserve-3d;
   margin-top: 50%;
-
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
- .flip-card-inner-animation {
+.flip-card-inner-animation {
   transform: rotateY(180deg);
 }
 
