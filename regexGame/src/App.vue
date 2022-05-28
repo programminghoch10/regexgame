@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Game, isMatching } from "./components/game";
+import { Quiz ,Game, isMatching } from "./components/game";
 import AnswerBox from "./components/AnswerBox.vue";
 import RegexBox from "./components/RegexBox.vue";
 
@@ -11,10 +11,17 @@ export default {
   },
   data() {
     return {
-      game: new Game(new RegExp("(ab)*",), ["abab", "b", "c"]),
+      quiz: new Quiz(new RegExp("(ab)*"),"abab","ba","cccd"),
+      quizzes: [],
+      game: Game,
+      currentQuiz: Quiz
     };
   },
-  mounted() {},
+  mounted() {
+    this.quizzes.push(this.quiz);
+    this.game = new Game(this.quizzes);
+    this.currentQuiz = this.game.quizzes[0];
+  },
   methods: {
     clickAnswer(answer : String){
       this.game.points++;
@@ -31,13 +38,12 @@ export default {
 
 <template>
   <div class="gamebox">
-    <regex-box :regExp="game.regEx"></regex-box>
+    <regex-box :regExp="currentQuiz.regEx"></regex-box>
     <div class="row" id="rowbox">
       <answer-box
-        v-for="answer in game.answers"
+        v-for="answer in currentQuiz.answers"
         :key="answer"
         :answer="answer"
-        :game="game"
         :clickAnswer="clickAnswer"
       ></answer-box>
     </div>

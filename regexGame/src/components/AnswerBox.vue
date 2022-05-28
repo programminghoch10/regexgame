@@ -18,7 +18,6 @@ import { Game } from "./game";
 export default {
   props: {
     answer: String,
-    game: Game,
     clickAnswer: Function
   },
 
