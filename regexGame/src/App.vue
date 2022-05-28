@@ -1,44 +1,50 @@
 <script lang="ts">
-import {Game} from './components/game';
-import AnswerBox from './components/AnswerBox.vue';
-import RegexBox from './components/RegexBox.vue';
+import { Game } from "./components/game";
+import AnswerBox from "./components/AnswerBox.vue";
+import RegexBox from "./components/RegexBox.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     AnswerBox,
-    RegexBox
+    RegexBox,
   },
   data() {
     return {
-      game : new Game(new RegExp("ab+c", "i"),["hallo","hey","cool"])
+      game: new Game(new RegExp("ab+c", "i"), ["hallo", "hey", "cool"]),
+    };
+  },
+  mounted() {},
+  methods: {
+    clickAnswer(answer : String){
+      this.game.points++;
+      console.log("new Game");
+      
     }
   },
-  methods: {},
-    mounted(){}
-  };
+};
 </script>
-
 
 <template>
   <div class="gamebox">
     <regex-box :regExp="game.regEx"></regex-box>
-      <div class="row" id="rowbox">
-        <answer-box
+    <div class="row" id="rowbox">
+      <answer-box
         v-for="answer in game.answers"
         :key="answer"
         :answer="answer"
         :game="game"
-        ></answer-box>
-      </div>
-      <h4>Points: 5 {{}}</h4>
+        :clickAnswer="clickAnswer"
+      ></answer-box>
     </div>
+    <h4>Points: 5 {{}}</h4>
+  </div>
 </template>
-
 
 <style>
 @import "@/assets/base.css";
-#app {}
+#app {
+}
 .gamebox {
   margin-top: 20%;
   margin-left: 20%;
