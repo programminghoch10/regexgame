@@ -29,11 +29,7 @@ export default {
 
   methods: {
     click() {
-      console.log(this.answer);
-      
-      
-      
-
+      this.clickAnswer(this.answer);
     },
 
     selectAnswer(name: string) {

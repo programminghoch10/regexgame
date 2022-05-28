@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Game } from "./components/game";
+import { Game, isMatching } from "./components/game";
 import AnswerBox from "./components/AnswerBox.vue";
 import RegexBox from "./components/RegexBox.vue";
 
@@ -11,14 +11,18 @@ export default {
   },
   data() {
     return {
-      game: new Game(new RegExp("ab+c", "i"), ["hallo", "hey", "cool"]),
+      game: new Game(new RegExp("(ab)*",), ["abab", "b", "c"]),
     };
   },
   mounted() {},
   methods: {
     clickAnswer(answer : String){
       this.game.points++;
-      console.log("new Game");
+      //console.log(answer);
+      
+      console.log(isMatching(answer,this.game.regEx));
+      
+      //console.log("new Game");
       
     }
   },
@@ -37,7 +41,7 @@ export default {
         :clickAnswer="clickAnswer"
       ></answer-box>
     </div>
-    <h4>Points: 5 {{}}</h4>
+    <h4>Points: {{this.game.points}}</h4>
   </div>
 </template>
 
