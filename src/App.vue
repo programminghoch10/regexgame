@@ -1,19 +1,19 @@
 <template>
   <div class="outer">
-    <div class="innerGameBox">
+    <div class="innerGameBox gamebox">
       <regex-box
-        class="box regExBox innerOuter"
+        class="regExBox innerOuter"
         :regExp="game.currentQuiz.regEx"
       ></regex-box>
       <answer-box
-        class="four columns box answerBox innerOuter"
+        class="four columns answerBox innerOuter"
         v-for="answer in game.currentQuiz.answers"
         v-bind:key="answer"
         v-bind:answer="answer"
         v-bind:clickAnswer="clickAnswer"
       >
       </answer-box>
-      <div class="twelve columns pointsBox box innerOuter">
+      <div class="twelve columns pointsBox innerOuter">
         <h3 class="inner pointsText">Points: {{ game.points }}</h3>
       </div>
     </div>

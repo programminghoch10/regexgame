@@ -1,6 +1,6 @@
 <template>
   <div @click="click()">
-    <h3 class="inner sytleButton">{{ answer }}</h3>
+    <h3 class="inner styleButton">{{ answer }}</h3>
   </div>
 </template>
 

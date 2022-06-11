@@ -1,13 +1,62 @@
-.sytleButton {
-    border: red solid 2px;
+:root {
+    --clr-neon: hsl(317 100% 54%);
+    --clr-bg: hsl(223 21% 16%);
+}
+
+body {
+    font-family: "Baslsamiq Sans", cursive;
+    background-color: var(--clr-bg);
+    color: var(--clr-neon);
+}
+
+.styleButton {
+    color: var(--clr-neon);
     padding: 10% 25%;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 0.25em;
+    border: var(--clr-neon) 4px solid;
+    text-shadow: 0 0 0.25em hsl(0 0% 100% / 0.5), 0 0 0.5em currentColor;
+    box-shadow: inset 0 0 0.5em 0 currentColor, 0 0 0.5em currentColor;
+    position: relative;
+}
+
+.styleButton:hover,
+.styleButton:focus {
+    color: var(--clr-bg);
+    text-shadow: none;
+}
+
+.styleButton::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0 0 1em 0.4em var(--clr-neon);
+    background-color: var(--clr-neon);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 100ms linear;
+}
+
+.styleButton:hover::after {
+    opacity: 1;
 }
 
 .pointsText {
-    color: green;
-    font-size: large;
+    font-size: 3rem;
+    text-shadow: 0 0 0.25em hsl(0 0% 100% / 0.5), 0 0 0.5em currentColor;
 }
 
 .regexText {
-    color: orange;
+    text-shadow: 0 0 0.25em currentColor, 0 0 0.5em currentColor;
+}
+
+.gamebox {
+    box-shadow: 0 0 3.5em var(--clr-neon);
+    border-radius: 2em;
+    border: var(--clr-neon) 4px solid;
+    position: relative;
 }
