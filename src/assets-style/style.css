@@ -1,0 +1,13 @@
+.sytleButton {
+    border: red solid 2px;
+    padding: 10% 25%;
+}
+
+.pointsText {
+    color: green;
+    font-size: large;
+}
+
+.regexText {
+    color: orange;
+}

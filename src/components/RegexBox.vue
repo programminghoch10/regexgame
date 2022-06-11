@@ -1,0 +1,33 @@
+<template>
+  <div>
+    <h2 class="textFormat inner regexText">
+      {{ regExp?.toString().substring(1, regExp?.toString().length - 1) }}
+    </h2>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
+  props: {
+    regExp: RegExp,
+  },
+  components: {},
+  data() {
+    return {
+      check: Boolean,
+    };
+  },
+  mounted() {
+    console.log(0);
+  },
+  methods: {},
+});
+</script>
+<style>
+@import "@/assets-style/size.css";
+@import "@/assets-style/skeleton.css";
+@import "@/assets-style/normalize.css";
+@import "@/assets-style/style.css";
+@import url("https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple");
+</style>
