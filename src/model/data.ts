@@ -2,7 +2,13 @@ import { Quiz } from "./game";
 
 export function quizData(): Quiz[] {
   const list: Quiz[] = [];
-  const quiz: Quiz = new Quiz(new RegExp("(ab)*"), "abab", "ba", "cccd");
-  list.push(quiz);
+  //Very Easy for the Beginning
+
+  list.push(new Quiz(new RegExp("hello"), "hello", "welcome", "hey :)"));
+  list.push(new Quiz(new RegExp(".s"), "is", "the game", "easy"));
+  list.push(new Quiz(new RegExp(".ha"), "aha", "haha", "ha"));
+  list.push(new Quiz(new RegExp(".o."), "lol", "hello", "lo"));
+  list.push(new Quiz(new RegExp(".a.a.a.a"), "hahahaha", "aaaa", "laalaa"));
+
   return list;
 }

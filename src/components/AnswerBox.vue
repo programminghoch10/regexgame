@@ -15,9 +15,6 @@ export default defineComponent({
   data() {
     return {};
   },
-  mounted() {
-    console.log(this.answer);
-  },
   methods: {
     click() {
       this.$props.clickAnswer?.(this.answer);

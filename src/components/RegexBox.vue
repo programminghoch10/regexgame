@@ -18,9 +18,6 @@ export default defineComponent({
       check: Boolean,
     };
   },
-  mounted() {
-    console.log(0);
-  },
   methods: {},
 });
 </script>

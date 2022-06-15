@@ -7,12 +7,14 @@ export class Game {
   points = 0;
   currentQuiz: Quiz;
   quizIndex: number;
+  lost = true;
+  win = false;
+  played = false;
 
   public constructor() {
     this.quizList = quizData();
     this.quizIndex = 0;
     this.currentQuiz = this.quizList[this.quizIndex];
-    console.log(this.currentQuiz);
   }
 
   public logAnswer(answer: string): boolean {
@@ -21,9 +23,18 @@ export class Game {
       this.points++;
       return true;
     } else {
+      this.lost = true;
       this.points = 0;
       return false;
     }
+  }
+
+  public startGame(): void {
+    this.lost = false;
+    this.quizIndex = 0;
+    this.win = false;
+    this.currentQuiz = this.quizList[0];
+    this.played = true;
   }
 
   private nextQuiz(): void {
@@ -31,12 +42,8 @@ export class Game {
     if (this.quizList[this.quizIndex] != null) {
       this.currentQuiz = this.quizList[this.quizIndex];
     } else {
-      this.currentQuiz = new Quiz(
-        new RegExp("keine weitern Spiele"),
-        "ok",
-        "schade",
-        "hmm"
-      );
+      this.win = true;
+      this.lost = true;
     }
   }
 }
@@ -59,12 +66,31 @@ export class Quiz implements GameObject {
   ) {
     this.regEx = regEx;
     //Checks if the quiz is valid
-    if (
-      !isMatching(correct, regEx) ||
-      isMatching(incorrect1, regEx) ||
-      isMatching(incorrect2, regEx)
-    ) {
-      console.log("The created quiz is incorrect");
+    if (!isMatching(correct, regEx)) {
+      console.log(
+        "The created quiz is incorrect" +
+          " Because " +
+          correct +
+          " dont match " +
+          regEx +
+          " this schould be matching."
+      );
+    }
+    if (isMatching(incorrect1, regEx)) {
+      "The created quiz is incorrect" +
+        " Because " +
+        incorrect1 +
+        " match " +
+        regEx +
+        " this schould not be matching.";
+    }
+    if (isMatching(incorrect2, regEx)) {
+      "The created quiz is incorrect" +
+        " Because " +
+        incorrect2 +
+        " match " +
+        regEx +
+        " this schould not be matching.";
     }
     // Arranges the 3 possible answers in a random order.
     const position: number = Math.floor(Math.random() * 3 + 1);
