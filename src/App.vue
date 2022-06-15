@@ -27,9 +27,13 @@
           YOU FAILED
         </h2>
       </div>
-      <div @click="menuclick('help')" class="six columns answerBox innerOuter">
-        <h3 class="inner styleButton">Help</h3>
-      </div>
+      <a
+        href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp"
+      >
+        <div class="six columns answerBox innerOuter">
+          <h3 class="inner styleButton">Help</h3>
+        </div>
+      </a>
       <div @click="menuclick('play')" class="six columns answerBox innerOuter">
         <h3 v-if="!game.played" class="inner styleButton">Play</h3>
         <h3 v-if="game.played" class="inner styleButton">Try again</h3>
@@ -66,8 +70,11 @@ export default defineComponent({
       if (this.highscore < this.game.points) {
         this.highscore = this.game.points;
       }
-      if (this.game.lost == true) {
+      if (this.game.lost) {
         document.documentElement.style.setProperty("--clr-neon", "#FF0000");
+      }
+      if (this.game.win) {
+        document.documentElement.style.setProperty("--clr-neon", "#FFd700");
       }
     },
     menuclick(info: string) {

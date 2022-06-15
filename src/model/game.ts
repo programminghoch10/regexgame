@@ -19,8 +19,8 @@ export class Game {
 
   public logAnswer(answer: string): boolean {
     if (this.currentQuiz.checkAnswer(answer)) {
-      this.nextQuiz();
       this.points++;
+      this.nextQuiz();
       return true;
     } else {
       this.lost = true;
@@ -31,6 +31,7 @@ export class Game {
 
   public startGame(): void {
     this.lost = false;
+    this.points = 0;
     this.quizIndex = 0;
     this.win = false;
     this.currentQuiz = this.quizList[0];
