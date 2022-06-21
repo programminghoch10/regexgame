@@ -1,9 +1,10 @@
 # regex-game
 
-## Description
 This game aims to improve a users understanding of regexes.
 
-## Configuration
+## Development
+
+### configuration
 Open `/src/model/data.ts`. 
 Here you can find the function `quizData()` which fills up a list of `Quiz` objects.
 This allows you to enter regexes, which will be used inside the game.
@@ -19,24 +20,67 @@ The third and fourth parameters are alternative answers, which don't match the r
 
 Invalid Combinations of a regex and the answers will be logged into the browser console. 
 
-## Project setup
+### Getting started
+
+Clone the repository  
+```sh
+git clone https://github.com/Gamify-IT/regex-game.git
 ```
+
+Install the dependencies  
+```sh
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
 ```
 
-### Compiles and minifies for production
+### Build
+
+Build the Docker-Container
+```sh
+docker build -t regex-game-dev
 ```
-npm run build
+And run it at port 8000 with
+```sh
+docker run -d -p 8000:80 --name regex-game-dev regex-game-dev
 ```
 
-### Lints and fixes files
+To monitor, stop and remove the container you can use the following commands:
+```sh
+docker ps -a -f name=regex-game-dev
 ```
-npm run lint
+```sh
+docker stop regex-game-dev
+```
+```sh
+docker rm regex-game-dev
+```
+
+
+## User manual
+
+Run the docker container with the following command at port 8000:
+```sh
+docker run -d -p 8000:80 --name regex-game ghcr.io/gamify-it/regex-game:latest
+```
+Now you can access it at [http://localhost:8000](http://localhost:8000).  
+To access it externally replace localhost with your IP.  
+
+To monitor the container you can use the following command:
+```sh
+docker ps -a -f name=regex-game
+```
+To stop the container you can use the following command:
+```sh
+docker stop regex-game
+```
+To remove the container you can use the following command:
+```sh
+docker rm regex-game
 ```
 
 ### Customize configuration
