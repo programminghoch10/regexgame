@@ -1,5 +1,5 @@
 body {
-    font-family: "Baslsamiq Sans", cursive;
+    font-family: 'Courier New', monospace;
     background-color: var(--clr-bg);
     color: var(--clr-neon);
 }
