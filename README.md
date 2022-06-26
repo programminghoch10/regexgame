@@ -42,7 +42,7 @@ npm run dev
 
 Build the Docker-Container
 ```sh
-docker build -t regex-game-dev
+docker build -t regex-game-dev .
 ```
 And run it at port 8000 with
 ```sh
