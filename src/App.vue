@@ -27,16 +27,26 @@
           YOU FAILED
         </h2>
       </div>
-      <a
-        href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/RegExp"
-      >
-        <div class="six columns answerBox innerOuter">
-          <h3 class="inner styleButton">Help</h3>
-        </div>
-      </a>
-      <div @click="menuclick('play')" class="six columns answerBox innerOuter">
-        <h3 v-if="!game.played" class="inner styleButton">Play</h3>
-        <h3 v-if="game.played" class="inner styleButton">Try again</h3>
+
+      <div class="six columns answerBox innerOuter">
+        <h3 @click="menuclick('help')" class="inner styleButton">Help</h3>
+      </div>
+
+      <div class="six columns answerBox innerOuter">
+        <h3
+          @click="menuclick('play')"
+          v-if="!game.played"
+          class="inner styleButton"
+        >
+          Play
+        </h3>
+        <h3
+          @click="menuclick('play')"
+          v-if="game.played"
+          class="inner styleButton"
+        >
+          Try again
+        </h3>
       </div>
       <div class="twelve columns pointsBox innerOuter">
         <h3 class="inner pointsText">Highscore: {{ highscore }}</h3>
@@ -81,6 +91,10 @@ export default defineComponent({
       if (info === "play") {
         this.game.startGame();
         document.documentElement.style.setProperty("--clr-neon", "#00FF31");
+      }
+      if (info === "help") {
+        window.location.href =
+          "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp";
       }
     },
   },

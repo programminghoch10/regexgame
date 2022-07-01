@@ -78,20 +78,24 @@ export class Quiz implements GameObject {
       );
     }
     if (isMatching(incorrect1, regEx)) {
-      "The created quiz is incorrect" +
-        " Because " +
-        incorrect1 +
-        " match " +
-        regEx +
-        " this schould not be matching.";
+      console.log(
+        "The created quiz is incorrect" +
+          " Because " +
+          incorrect1 +
+          " match " +
+          regEx +
+          " this schould not be matching."
+      );
     }
     if (isMatching(incorrect2, regEx)) {
-      "The created quiz is incorrect" +
-        " Because " +
-        incorrect2 +
-        " match " +
-        regEx +
-        " this schould not be matching.";
+      console.log(
+        "The created quiz is incorrect" +
+          " Because " +
+          incorrect2 +
+          " match " +
+          regEx +
+          " this schould not be matching."
+      );
     }
     // Arranges the 3 possible answers in a random order.
     const position: number = Math.floor(Math.random() * 3 + 1);

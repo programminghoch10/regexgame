@@ -1,6 +1,7 @@
 <template>
   <div @click="click()">
-    <h3 class="inner styleButton">{{ answer }}</h3>
+    <h3 v-if="!(answer === '')" class="inner styleButton">{{ answer }}</h3>
+    <h3 v-if="answer === ''" class="inner styleButton">ε</h3>
   </div>
 </template>
 
