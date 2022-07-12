@@ -37,6 +37,7 @@
           @click="menuclick('play')"
           v-if="!game.played"
           class="inner styleButton"
+          id="start-game-button"
         >
           Play
         </h3>
