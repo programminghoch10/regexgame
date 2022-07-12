@@ -130,8 +130,8 @@ export class Quiz implements GameObject {
 export function isMatching(text: string, regExp: RegExp): boolean {
   const match: RegExpMatchArray = text.match(regExp) || [];
 
-  for (let index = 0; index < match.length; index++) {
-    if (match[index] != undefined && match[index].length === text.length) {
+  for (const element of match) {
+    if (element != undefined && element.length === text.length) {
       return true;
     }
   }
