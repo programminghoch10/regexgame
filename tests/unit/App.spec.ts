@@ -10,7 +10,7 @@ describe("AppApp.vue", () => {
   beforeEach(() => {
     wrapper = mount(App);
   });
-  test("RegexBox shows play button on start screen", () => {
+  test("App shows play button on start screen", () => {
     const startButton = wrapper.find("#start-game-button");
     expect(startButton.exists()).toBe(true);
   });
