@@ -1,0 +1,113 @@
+version: "3.7"
+
+services:
+
+  #databases
+  login-db:
+    container_name: login-db
+    image: postgres:14-alpine
+    restart: always
+    expose:
+      - "5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  overworld-db:
+    container_name: overworld-db
+    image: postgres:14-alpine
+    restart: always
+    expose:
+      - "5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  # regex-game-db:
+  #   container_name: regex-game-db
+  #   image: postgres:14-alpine
+  #   restart: always
+  #   expose:
+  #     - "5432"
+  #   environment:
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+
+  #backends
+  login-backend:
+    container_name: login-backend
+    image: ghcr.io/gamify-it/login-backend:main
+    restart: always
+    pull_policy: always
+    expose:
+      - "80"
+    environment:
+      - JWT_KEY=SecretKEY
+      - JWT_VALIDITY_DURATION=720h
+      - POSTGRES_URL=postgresql://postgres:postgres@login-db:5432/
+
+  overworld-backend:
+    container_name:   overworld-backend
+    image: ghcr.io/gamify-it/overworld-backend:main
+    restart: always
+    pull_policy: always
+    expose:
+      - "80"
+    depends_on:
+      - overworld-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_URL=postgresql://overworld-db:5432/postgres
+
+  # regex-game-backend:
+  #   container_name: regex-game-backend
+  #   image: ghcr.io/gamify-it/regex-game-backend:main
+  #   restart: always
+  #   pull_policy: always
+  #   expose:
+  #     - "80"
+  #   depends_on:
+  #     - regex-game-db
+  #   environment:
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  #     - POSTGRES_URL=postgresql://regex-game-db:5432/postgres
+
+
+  #frontends
+  # login-frontend:
+  #   container_name: login-frontend
+  #   image: ghcr.io/gamify-it/login-frontend:main
+  #   restart: always
+  #   pull_policy: always
+  #   expose:
+  #     - "80"
+
+  # overworld:
+  #   container_name: overworld
+  #   image: ghcr.io/gamify-it/overworld:main
+  #   restart: always
+  #   pull_policy: always
+  #   expose:
+  #     - "80"
+
+  # lecturer-interface:
+  #   container_name: lecturer-interface
+  #   image: ghcr.io/gamify-it/lecturer-interface:main
+  #   restart: always
+  #   pull_policy: always
+  #   expose:
+  #     - "80"
+
+  # reverse-proxy
+  reverse-proxy:
+    container_name: reverse-proxy
+    image: nginx
+    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./.nginx/compose/nginx-dev.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "80:80"
