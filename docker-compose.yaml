@@ -3,6 +3,17 @@ version: "3.7"
 services:
 
   #databases
+  # setup:
+  #   container_name: setup
+  #   image: ghcr.io/gamify-it/test-data:latest
+  #   pull_policy: always
+  #   restart: on-failure
+  #   environment:
+  #     POSTGRES_SETUP: >
+  #       login/default.sql
+  #       overworld/default.sql
+  #       regex-game/default.sql
+
   # login-db:
   #   container_name: login-db
   #   image: postgres:14-alpine
