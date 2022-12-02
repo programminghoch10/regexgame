@@ -40,7 +40,7 @@ Check the [manual for docker-compose](https://github.com/Gamify-IT/docs/blob/mai
 ### Compile and Hot-Reload for Development
 
 ```sh
-npm run dev
+npm run serve
 ```
 
 ### Build
