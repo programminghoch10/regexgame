@@ -12,7 +12,7 @@ services:
       POSTGRES_SETUP: >
         keycloak/default.sql
         overworld/default.sql
-        regex-game/default.sql
+        regexgame/default.sql
 
   keycloak-db:
     container_name: keycloak-db
@@ -34,8 +34,8 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
 
-  regex-game-db:
-    container_name: regex-game-db
+  regexgame-db:
+    container_name: regexgame-db
     image: postgres:14-alpine
     restart: always
     expose:
@@ -81,19 +81,19 @@ services:
       - KEYCLOAK_ISSUER=http://localhost/keycloak/realms/Gamify-IT
       - KEYCLOAK_URL=http://keycloak/keycloak/realms/Gamify-IT
 
-  regex-game-backend:
-    container_name: regex-game-backend
-    image: ghcr.io/gamify-it/regex-game-backend:main
+  regexgame-backend:
+    container_name: regexgame-backend
+    image: ghcr.io/gamify-it/regexgame-backend:main
     restart: always
     pull_policy: always
     expose:
       - "80"
     depends_on:
-      - regex-game-db
+      - regexgame-db
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_URL=postgresql://regex-game-db:5432/postgres
+      - POSTGRES_URL=postgresql://regexgame-db:5432/postgres
       - KEYCLOAK_ISSUER=http://localhost/keycloak/realms/Gamify-IT
       - KEYCLOAK_URL=http://keycloak/keycloak/realms/Gamify-IT
       - OVERWORLD_URL=http://overworld-backend/api/v1
