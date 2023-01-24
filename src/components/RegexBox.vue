@@ -26,5 +26,4 @@ export default defineComponent({
 @import "@/assets-style/skeleton.css";
 @import "@/assets-style/normalize.css";
 @import "@/assets-style/style.css";
-@import url("https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple");
 </style>
