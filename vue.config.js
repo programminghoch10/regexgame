@@ -1,5 +1,5 @@
 const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
-  publicPath: "/minigames/regex-game",
+  publicPath: "/minigames/regexgame",
   transpileDependencies: true,
 });
