@@ -1,0 +1,64 @@
+#startpage {
+  width: auto;
+  max-width: 100%;
+  height: fit-content;
+  aspect-ratio: 20;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 1em;
+  align-items: center;
+  border: 0.2em solid currentColor;
+  border-radius: 2em;
+}
+
+#startpage>h1 {
+  font-size: 5em;
+  margin: 1rem;
+  margin-bottom: 3rem;
+}
+
+#startpage #buttons {
+  margin: 1em;
+  display: flex;
+  gap: 1em;
+  flex-direction: row;
+}
+
+#startpage .button {
+  border: 0.2em solid currentColor;
+  border-radius: 1em;
+}
+
+#startpage .button {
+  padding-inline: 3em;
+  padding-block: 1em;
+}
+
+#startpage .button>h2 {
+  font-size: 3em;
+}
+
+.button.green {
+  color: #0d0;
+  transition:
+    ease-out color 250ms,
+    ease-in-out scale 500ms;
+}
+
+.button.green:hover {
+  color: #0f0;
+  scale: 1.1;
+}
+
+.button.red {
+  color: #d00;
+  transition:
+    ease-out color 250ms,
+    ease-in-out scale 500ms;
+}
+
+.button.red:hover {
+  color: #f00;
+  scale: 1.1;
+}
