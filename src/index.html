@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="startpage.css">
     <link rel="stylesheet" href="game.css">
     <link rel="stylesheet" href="glow.css">
+    <script src="startpage.js" async defer></script>
     <title>RegexGame</title>
   </head>
 
@@ -16,33 +17,37 @@
     <div id="startpage" class="box-glow game-box">
       <h1>RegexGame</h1>
       <div id="buttons">
-        <div id="playbutton" class="button box-glow-light green">
+        <button id="playbutton"
+                class="button box-glow-light green"
+                onclick="play()">
           <h2>Play</h2>
-        </div>
-        <div id="quitbutton" class="button box-glow-light red">
+        </button>
+        <button id="quitbutton"
+                class="button box-glow-light red"
+                onclick="quit()">
           <h2>Quit</h2>
-        </div>
+        </button>
       </div>
     </div>
-    <div id="game" class="box-glow game-box">
+    <div id="game" class="box-glow game-box hidden">
       <p class="instruction">Given the regex</p>
       <div id="riddle">
         <p>ab(ab)*</p>
       </div>
       <p class="instruction">which string matches?</p>
       <div id="answers">
-        <div class="answer button box-glow-light">
+        <button class="answer button box-glow-light">
           <p>aba</p>
-        </div>
-        <div class="answer button box-glow-light">
+        </button>
+        <button class="answer button box-glow-light">
           <p>abb</p>
-        </div>
-        <div class="answer button box-glow-light">
+        </button>
+        <button class="answer button box-glow-light">
           <p>ababa</p>
-        </div>
-        <div class="answer button box-glow-light">
+        </button>
+        <button class="answer button box-glow-light">
           <p>abab</p>
-        </div>
+        </button>
       </div>
     </div>
   </body>

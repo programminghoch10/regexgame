@@ -12,7 +12,7 @@
 #startpage #buttons {
   margin: 1em;
   display: flex;
-  gap: 1em;
+  gap: 2em;
   flex-direction: row;
 }
 
