@@ -1,19 +1,10 @@
 #startpage {
-  width: auto;
-  max-width: 100%;
-  height: fit-content;
-  aspect-ratio: 20;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
-  padding: 1em;
   align-items: center;
-  border: 0.2em solid currentColor;
-  border-radius: 2em;
 }
 
-#startpage>h1 {
-  font-size: 5em;
+#startpage > h1 {
   margin: 1rem;
   margin-bottom: 3rem;
 }
@@ -26,17 +17,8 @@
 }
 
 #startpage .button {
-  border: 0.2em solid currentColor;
-  border-radius: 1em;
-}
-
-#startpage .button {
   padding-inline: 3em;
   padding-block: 1em;
-}
-
-#startpage .button>h2 {
-  font-size: 3em;
 }
 
 .button.green {

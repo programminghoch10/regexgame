@@ -3,22 +3,49 @@ body {
   width: 100vw;
   padding: 2rem;
   padding-block: 5rem;
+  margin: 0;
   box-sizing: border-box;
-  display: flex;
-  align-items: top;
-  justify-content: center;
   background-color: black;
   color: white;
-  margin: 0;
   user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
 }
 
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+body > div.game-box {
+  min-width: min-content;
+  width: 70rem;
+  max-width: 90vw;
+  height: min-content;
+  max-height: 100%;
+  box-sizing: border-box;
+  padding: 1em;
+  margin: 0.5em;
+  border: 0.2em solid currentColor;
+  border-radius: 2em;
+}
+
+.button {
+  border: 0.2em solid currentColor;
+  border-radius: 1em;
+  padding-inline: 3em;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
   margin: 0;
+}
+
+h1 {
+  font-size: 5em;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+.hidden {
+  display: none !important;
 }

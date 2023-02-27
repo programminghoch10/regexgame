@@ -1,0 +1,34 @@
+#game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#riddle > p {
+  font-size: 5em;
+  margin-block: 1rem;
+}
+
+#answers {
+  display: flex;
+  gap: 2em;
+  flex-wrap: wrap;
+  padding: 2em;
+  justify-content: space-evenly;
+}
+
+.answer {
+  transition: ease-out color 250ms;
+}
+
+.answer:hover {
+  color: #aaf;
+}
+
+.answer > p {
+  font-size: 4em;
+}
+
+#game > .instruction {
+  text-shadow: none;
+}
