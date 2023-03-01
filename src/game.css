@@ -26,8 +26,21 @@
   color: #aaf;
 }
 
+#answers:has(.answer.answer.selected) .answer:not(.selected) {
+  opacity: 0.6;
+  transition: opacity ease-in-out 500ms;
+}
+
 .answer > p {
   font-size: 4em;
+}
+
+.answer.selected {
+  transition:
+    color ease-out 500ms,
+    scale ease-out 600ms,
+    rotate ease-out 200ms;
+  scale: 1.2
 }
 
 .answer.correct {
