@@ -20,6 +20,10 @@ extension directly.
 ```bash
 docker compose -f docker-compose-dev.yaml up
 ```
+and
+```bash
+npm run dev
+```
 
 Start the live server using the `Go Live` button in the bottom right corner of VSCode.
 

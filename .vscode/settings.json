@@ -13,6 +13,17 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/*.js": true,
+    "package-lock.json": true,
+    "node_modules": true,
+  },
   // html
   "html.format.enable": true,
   "html.format.indentInnerHtml": true,
@@ -42,4 +53,5 @@
   // live server
   "liveServer.settings.port": 8000,
   "liveServer.settings.NoBrowser": true,
+  "liveServer.settings.root": "src/",
 }
