@@ -37,14 +37,17 @@ var currentRiddle: Riddle | undefined
  * Display a riddle to the user
  * @param riddle the riddle to display
  */
-function displayRiddle(riddle: Riddle) {
+async function displayRiddle(riddle: Riddle) {
+  await gameBoxHeightTransitionBegin()
+  setHidden(startPageDiv, true)
+  setHidden(gameDiv, false)
   removeCurrentRiddle()
-  switchToGame()
   currentRiddle = riddle
   riddleDivP.innerText = riddle.regex.source
   riddle.answers.forEach(answer =>
     answersDiv.appendChild(generateAnswerButton(answer))
   )
+  await gameBoxHeightTransitionEnd()
 }
 
 function removeCurrentRiddle() {
@@ -61,5 +64,5 @@ function onAnswerSelected(button: HTMLButtonElement, answer: string) {
   const correctAnswer = answerMatchesRiddle == currentRiddle.solvedOnMatch
   button.classList.add(correctAnswer ? "correct" : "incorrect")
   button.classList.add("selected")
-  //setTimeout(() => switchToStartPage(), 3000)
+  setTimeout(() => switchToStartPage(), 3000)
 }

@@ -1,4 +1,8 @@
 
+function sleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function quit() {
   window.parent.postMessage("CLOSE ME", "*")
   window.close()
@@ -10,18 +14,12 @@ function play() {
   displayRiddle(exampleRiddle)
 }
 
-function setHidden(element: HTMLElement, hidden: boolean) {
-  element.classList[hidden ? "add" : "remove"]("hidden")
-}
-
+const gameBoxDiv = document.querySelector("body > div.game-box")! as HTMLDivElement
 const startPageDiv = document.querySelector("#startpage")! as HTMLDivElement
 const gameDiv = document.querySelector("#game")! as HTMLDivElement
-function switchToStartPage() {
-  setHidden(gameDiv, true)
+async function switchToStartPage() {
+  await gameBoxHeightTransitionBegin()
   setHidden(startPageDiv, false)
-  removeCurrentRiddle()
-}
-function switchToGame() {
-  setHidden(startPageDiv, true)
-  setHidden(gameDiv, false)
+  setHidden(gameDiv, true)
+  await gameBoxHeightTransitionEnd()
 }

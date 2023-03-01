@@ -15,17 +15,22 @@ body {
   gap: 0.5em;
 }
 
-body > div.game-box {
+body div.content-box {
   min-width: min-content;
   width: 70rem;
   max-width: 90vw;
   height: min-content;
   max-height: 100%;
-  box-sizing: border-box;
+  transition: 500ms ease opacity;
+}
+
+body > div.game-box {
+  box-sizing: content-box;
   padding: 1em;
   margin: 0.5em;
   border: 0.2em solid currentColor;
   border-radius: 2em;
+  transition: 500ms ease height;
 }
 
 .button {
@@ -53,4 +58,8 @@ h2 {
 
 .hidden {
   display: none !important;
+}
+
+.invisible {
+  opacity: 0 !important;
 }

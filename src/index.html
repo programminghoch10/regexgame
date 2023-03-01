@@ -11,44 +11,47 @@
     <link rel="stylesheet" href="glow.css">
     <script src="game.js" async defer></script>
     <script src="startpage.js" async defer></script>
+    <script src="gameboxtransition.js" async defer></script>
     <title>RegexGame</title>
   </head>
 
   <body>
-    <div id="startpage" class="box-glow game-box">
-      <h1>RegexGame</h1>
-      <div id="buttons">
-        <button id="playbutton"
-                class="button box-glow-light green"
-                onclick="play()">
-          <h2>Play</h2>
-        </button>
-        <button id="quitbutton"
-                class="button box-glow-light red"
-                onclick="quit()">
-          <h2>Quit</h2>
-        </button>
+    <div class="box-glow game-box">
+      <div id="startpage" class="content-box">
+        <h1>RegexGame</h1>
+        <div id="buttons">
+          <button id="playbutton"
+                  class="button box-glow-light green"
+                  onclick="play()">
+            <h2>Play</h2>
+          </button>
+          <button id="quitbutton"
+                  class="button box-glow-light red"
+                  onclick="quit()">
+            <h2>Quit</h2>
+          </button>
+        </div>
       </div>
-    </div>
-    <div id="game" class="box-glow game-box hidden">
-      <p class="instruction">Given the regex</p>
-      <div id="riddle">
-        <p>ab(ab)*</p>
-      </div>
-      <p class="instruction">which string matches?</p>
-      <div id="answers">
-        <button class="answer button box-glow-light">
-          <p>aba</p>
-        </button>
-        <button class="answer button box-glow-light">
-          <p>abb</p>
-        </button>
-        <button class="answer button box-glow-light">
-          <p>ababa</p>
-        </button>
-        <button class="answer button box-glow-light">
-          <p>abab</p>
-        </button>
+      <div id="game" class="content-box hidden">
+        <p class="instruction">Given the regex</p>
+        <div id="riddle">
+          <p>ab(ab)*</p>
+        </div>
+        <p class="instruction">which string matches?</p>
+        <div id="answers">
+          <button class="answer button box-glow-light">
+            <p>aba</p>
+          </button>
+          <button class="answer button box-glow-light">
+            <p>abb</p>
+          </button>
+          <button class="answer button box-glow-light">
+            <p>ababa</p>
+          </button>
+          <button class="answer button box-glow-light">
+            <p>abab</p>
+          </button>
+        </div>
       </div>
     </div>
   </body>

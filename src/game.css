@@ -38,8 +38,7 @@
 .answer.selected {
   transition:
     color ease-out 500ms,
-    scale ease-out 600ms,
-    rotate ease-out 200ms;
+    scale ease-out 600ms;
   scale: 1.2
 }
 
