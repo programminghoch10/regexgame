@@ -23,3 +23,5 @@ async function switchToStartPage() {
   setHidden(gameDiv, true)
   await gameBoxHeightTransitionEnd()
 }
+
+(async () => console.log("game configuration by id", await getGameConfigurationBySearchQuery()))()
