@@ -14,3 +14,9 @@ p {
 .box-glow-light {
   box-shadow: 0 0 1em currentColor;
 }
+
+.loading-animation::after {
+  box-shadow:
+    0 1.5em 2em -0.75em currentColor,
+    0 -1.5em 2em -0.75em currentColor;
+}

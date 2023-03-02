@@ -19,28 +19,89 @@
 #startpage .button {
   padding-inline: 3em;
   padding-block: 1em;
-}
-
-.button.green {
-  color: #0d0;
+  filter: grayscale(0.25);
   transition:
-    ease-out color 250ms,
+    ease-out filter 250ms,
     ease-in-out scale 500ms;
 }
 
-.button.green:hover {
-  color: #0f0;
+#startpage .button:hover {
   scale: 1.1;
+  filter: grayscale(0);
+}
+
+.button.green {
+  color: #0f0;
 }
 
 .button.red {
   color: #d00;
-  transition:
-    ease-out color 250ms,
-    ease-in-out scale 500ms;
 }
 
-.button.red:hover {
-  color: #f00;
-  scale: 1.1;
+#playbutton {
+  position: relative;
+}
+
+#playbutton.loading {
+  cursor: not-allowed;
+}
+
+#playbutton.loading:hover {
+  filter: grayscale(0.75);
+  scale: unset;
+}
+
+#playbutton .loading-animation {
+  position: absolute;
+  /* 50% of playbutton - half of the loading animation size */
+  left: calc(50% - 3em / 2);
+  top: calc(50% - 3em / 2);
+}
+
+#playbutton > h2, #playbutton .loading-animation, #playbutton > p#offline {
+  transition: opacity ease 500ms;
+  transition-delay: 250ms;
+}
+
+#playbutton > p#offline {
+  position: absolute;
+  bottom: 0.6em;
+  left: calc(38%);
+  opacity: 0;
+  transition-delay: 500ms;
+}
+
+#playbutton.offline > p#offline {
+  opacity: 0.75;
+}
+
+#playbutton:not(.loading) .loading-animation,
+#playbutton.loading > h2,
+#playbutton.loading > p#offline {
+  opacity: 0;
+}
+
+.loading-animation {
+  display: inline-block;
+  width: 3em;
+  height: 3em;
+}
+
+.loading-animation:after {
+  content: " ";
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 0.5em solid;
+  border-color: currentColor transparent currentColor transparent;
+  rotate: 0deg;
+  animation: loading 2s linear infinite;
+}
+
+@keyframes loading {
+  100% {
+    rotate: 360deg;
+  }
 }

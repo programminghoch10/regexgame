@@ -10,7 +10,9 @@ function quit() {
 
 const exampleRiddle: Riddle = new Riddle(/ab(ab)*/, ["aba", "abb", "ababa", "abab"])
 
+const playButton = document.querySelector("#playbutton")! as HTMLButtonElement
 function play() {
+  if (playButton.classList.contains("loading")) throw "still loading, cant play"
   displayRiddle(exampleRiddle)
 }
 
@@ -24,4 +26,14 @@ async function switchToStartPage() {
   await gameBoxHeightTransitionEnd()
 }
 
-(async () => console.log("game configuration by id", await getGameConfigurationBySearchQuery()))()
+async function load() {
+  try { await getGameConfigurationBySearchQuery() } catch { }
+  console.log("game configuration by id", gameConfigurationBySearchQuery)
+  if (!gameConfigurationBySearchQuery) {
+    console.info("no game configuration found!")
+    playButton.querySelector("h2")!.innerText = "Play"
+    playButton.classList.add("offline")
+  }
+  playButton.classList.remove("loading")
+}
+load()
