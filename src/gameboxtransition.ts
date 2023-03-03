@@ -2,7 +2,7 @@
 const invisibleTransitionTime = 500
 const heightTransitionTime = 250
 async function gameBoxHeightTransitionBegin() {
-  setHeight(gameBoxDiv, getHeightOfBiggestVisibileChild(gameBoxDiv) + "px");
+  setHeight(gameBoxDiv, getHeightOfBiggestVisibileChild(gameBoxDiv) + "px")
   document.querySelectorAll(".game-box > div").forEach(node => setInvisible(node as HTMLElement, true))
   await sleep(invisibleTransitionTime)
 }
