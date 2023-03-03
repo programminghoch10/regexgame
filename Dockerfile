@@ -2,12 +2,13 @@ FROM node:17-alpine as builder
 
 WORKDIR /build
 
-# Copy the package.json and install dependencies
-COPY package*.json ./
-RUN npm install
+# Copy required files
+COPY package*.json .
+COPY tsconfig.json .
+COPY src ./src
 
-# Copy rest of the files
-COPY . .
+# install dependencies
+RUN npm install
 
 # Build the project
 RUN npm run build
