@@ -9,5 +9,9 @@
 function generateRegexAnswers(regex: RegExp, answerCount: number, correctAnswerMatches?: boolean): string[] {
   if (correctAnswerMatches == undefined) correctAnswerMatches = true
   if (answerCount < 1) throw "invalid answerCount " + answerCount
-  return ["aba", "abb", "ababa", "abab"]
+  let answers = []
+  answers[0] = regex.source
+  for (let i = 1; i < answerCount; i++) answers[i] = RegexGenerator.getRandomCharSet()
+  answers = shuffleArray(answers)
+  return answers
 }
