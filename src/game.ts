@@ -37,6 +37,10 @@ async function displayRiddle(riddle: Riddle) {
   await gameBoxHeightTransitionEnd()
 }
 
+function nextRiddle() {
+  displayRiddle(generateRiddle())
+}
+
 function removeCurrentRiddle() {
   riddleDivP.innerText = ""
   answersDiv.innerHTML = ""
@@ -51,5 +55,10 @@ function onAnswerSelected(button: HTMLButtonElement, answer: string) {
   const correctAnswer = answerMatchesRiddle == currentRiddle.solvedOnMatch
   button.classList.add(correctAnswer ? "correct" : "incorrect")
   button.classList.add("selected")
-  setTimeout(() => switchToStartPage(), 3000)
+  setTimeout(() => {
+    if (correctAnswer)
+      nextRiddle()
+    else
+      switchToStartPage()
+  }, 3000)
 }

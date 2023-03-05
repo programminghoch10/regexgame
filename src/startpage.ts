@@ -8,12 +8,10 @@ function quit() {
   window.close()
 }
 
-const exampleRiddle: Riddle = new Riddle(/ab(ab)*/, ["aba", "abb", "ababa", "abab"])
-
 const playButton = document.querySelector("#playbutton")! as HTMLButtonElement
 function play() {
   if (playButton.classList.contains("loading")) throw "still loading, cant play"
-  displayRiddle(exampleRiddle)
+  nextRiddle()
 }
 
 const gameBoxDiv = document.querySelector("body > div.game-box")! as HTMLDivElement
