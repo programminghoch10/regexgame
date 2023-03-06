@@ -14,6 +14,7 @@ const defaultConfiguration: GameConfiguration = new GameConfiguration("", new Se
   RegexStructure.CHARACTER_CLASS,
   RegexStructure.CHARACTER_CLASS_INVERTED,
   RegexStructure.DISJUNCTION,
+  RegexStructure.ABSOLUTE_NUMERIC_QUANTIFIER,
 ]))
 
 /**

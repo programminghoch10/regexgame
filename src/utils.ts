@@ -17,6 +17,7 @@ function getRandomIntegerFromRange(minimum: number, maximum: number) {
   minimum = Math.round(minimum)
   maximum = Math.round(maximum)
   if (minimum > maximum) throw "invalid range"
+  if (minimum == maximum) return minimum
   return minimum + getRandomInteger(maximum - minimum)
 }
 

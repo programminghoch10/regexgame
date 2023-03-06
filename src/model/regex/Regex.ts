@@ -56,6 +56,8 @@ class Regex {
         return new RegexAtLeastOne()
       case RegexStructure.ANY_AMOUNT_QUANTIFIER:
         return new RegexAnyAmount()
+      case RegexStructure.ABSOLUTE_NUMERIC_QUANTIFIER:
+        return new RegexNumeric()
       default:
         throw "cant generate regex quantifier " + getRegexStructureString(regexQuantifier)
     }

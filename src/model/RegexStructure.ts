@@ -13,6 +13,7 @@ enum RegexStructure {
   AT_LEAST_ONE_QUANTIFIER,
   OPTIONAL_QUANTIFIER,
   CHARACTER_CLASS_INVERTED,
+  ABSOLUTE_NUMERIC_QUANTIFIER,
 }
 
 // defines which of the structures are quantifiers
@@ -20,6 +21,7 @@ const REGEX_QUANTIFIERS: Set<RegexStructure> = new Set([
   RegexStructure.OPTIONAL_QUANTIFIER,
   RegexStructure.AT_LEAST_ONE_QUANTIFIER,
   RegexStructure.ANY_AMOUNT_QUANTIFIER,
+  RegexStructure.ABSOLUTE_NUMERIC_QUANTIFIER,
 ])
 
 /**
