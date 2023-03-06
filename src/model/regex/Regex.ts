@@ -36,6 +36,8 @@ class Regex {
         return new RegexGroup(charSet, allowedRegexStructures, length, this.createRandomQuantification(allowedRegexStructures))
       case RegexStructure.CHARACTER_CLASS:
         return new RegexCharacterClass(charSet)
+      case RegexStructure.CHARACTER_CLASS_INVERTED:
+        return new RegexCharacterClassInverted(charSet)
       case RegexStructure.DISJUNCTION:
         return new RegexDisjunction(charSet, allowedRegexStructures, length)
       default:
@@ -57,10 +59,6 @@ class Regex {
       default:
         throw "cant generate regex quantifier " + getRegexStructureString(regexQuantifier)
     }
-  }
-
-  static lengthFactorToAbsoluteLength(lengthFactor: number): number {
-    return getRandomIntegerFromRange(lengthFactor / 2, lengthFactor)
   }
 
   static getRandomRegexStructure(allowedRegexStructures: Set<RegexStructure>) {

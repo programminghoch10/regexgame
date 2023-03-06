@@ -12,6 +12,7 @@ enum RegexStructure {
   ANY_AMOUNT_QUANTIFIER,
   AT_LEAST_ONE_QUANTIFIER,
   OPTIONAL_QUANTIFIER,
+  CHARACTER_CLASS_INVERTED,
 }
 
 // defines which of the structures are quantifiers

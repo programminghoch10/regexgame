@@ -12,6 +12,7 @@ Character sequence|`ab`|Matches the given character sequence literally
 Any single character|`.`|Matches any single character
 Group|`(ab)`|
 Character class|`[ab]`|Matches any of the enclosed characters
+Inverted character class|`[^ab]`|Match any character except the enclosed characters
 Disjunction|`[a\|b]`|Match any of the sequences seperated by `\|`
 Any-amount quantifier|`*`|Match previous sequence zero or more times
 At-least-one quantifier|`+`|Match previous sequence one or more times
