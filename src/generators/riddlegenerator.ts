@@ -3,9 +3,17 @@
  * Default configuration for offline gameplay,
  * if no game configuration id has been provided in the search query
  */
-const defaultConfiguration: GameConfiguration = new GameConfiguration("", new Set<RegexStructure>(
-  [RegexStructure.CHARACTER_CLASS, RegexStructure.CHARACTER_CLASS_RANGE])
-)
+const defaultConfiguration: GameConfiguration = new GameConfiguration("", new Set<RegexStructure>([
+  RegexStructure.SINGLE_CHARACTER,
+  RegexStructure.CHARACTER_SEQUENCE,
+  RegexStructure.GROUP,
+  RegexStructure.OPTIONAL_QUANTIFIER,
+  RegexStructure.ANY_AMOUNT_QUANTIFIER,
+  RegexStructure.AT_LEAST_ONE_QUANTIFIER,
+  RegexStructure.ANY_SINGLE_CHARACTER,
+  RegexStructure.CHARACTER_CLASS,
+  RegexStructure.DISJUNCTION,
+]))
 
 /**
  * Generates a new riddle according to the game configuration
@@ -17,5 +25,5 @@ function generateRiddle(configuration?: GameConfiguration): Riddle {
   // TODO: replace stub with actual generation
   let regex = RegexGenerator.generateRegex(configuration.allowedRegexStructures, configuration.complexity)
   let answers = generateRegexAnswers(regex, configuration.answerCount)
-  return new Riddle(regex, answers)
+  return new Riddle(regex.generate(), answers)
 }

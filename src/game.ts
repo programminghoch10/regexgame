@@ -38,7 +38,13 @@ async function displayRiddle(riddle: Riddle) {
 }
 
 function nextRiddle() {
-  displayRiddle(generateRiddle())
+  try {
+    displayRiddle(generateRiddle())
+  } catch (e) {
+    console.error("error creating next riddle", e)
+    //TODO: notify user?
+    switchToStartPage()
+  }
 }
 
 function removeCurrentRiddle() {
@@ -47,15 +53,27 @@ function removeCurrentRiddle() {
   currentRiddle = undefined
 }
 
+let nextAnswerTimeout: number | undefined
 function onAnswerSelected(button: HTMLButtonElement, answer: string) {
   if (!currentRiddle) throw "current riddle undefined"
-  if (answersDiv.querySelector("button.selected")) throw "answer already selected"
+  if (answersDiv.querySelector("button.selected")) {
+    if (nextAnswerTimeout !== undefined) {
+      clearTimeout(nextAnswerTimeout)
+      nextAnswerTimeout = undefined
+    }
+    let correctAnswer = answersDiv.querySelector("button.selected.correct") != undefined
+    if (correctAnswer)
+      nextRiddle()
+    else
+      switchToStartPage()
+    return
+  }
   const riddleRegex: RegExp = new RegExp(`^${currentRiddle.regex.source}$`)
   const answerMatchesRiddle: boolean = riddleRegex.test(answer)
   const correctAnswer = answerMatchesRiddle == currentRiddle.solvedOnMatch
   button.classList.add(correctAnswer ? "correct" : "incorrect")
   button.classList.add("selected")
-  setTimeout(() => {
+  nextAnswerTimeout = setTimeout(() => {
     if (correctAnswer)
       nextRiddle()
     else

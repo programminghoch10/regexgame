@@ -21,8 +21,7 @@ class RegexGenerator {
   }
 
   static getRandomRegexStructure(allowedRegexStructures: Set<RegexStructure>): RegexStructure {
-    let arr = [...allowedRegexStructures]
-    return arr[getRandomInteger(arr.length)]
+    return [...allowedRegexStructures][getRandomInteger(allowedRegexStructures.size)]
   }
 
   /**
@@ -31,17 +30,16 @@ class RegexGenerator {
    * @param complexity how complex the regex should be
    * @returns the generated regex
    */
-  static generateRegex(allowedRegexStructures: Set<RegexStructure>, complexity: number): RegExp {
+  static generateRegex(allowedRegexStructures: Set<RegexStructure>, complexity: number): Regex {
     let targetLength = this.minimumLength + getRandomIntegerFromRange(complexity / 2, complexity)
     targetLength = clamp(targetLength, this.minimumLength, this.maximumLength)
-    console.log("target length", targetLength)
     let charSet = this.getRandomCharSet()
-    let regex = ""
-    while (regex.length < targetLength) {
-      regex += this.getRandomCharFromCharSet(charSet)
-    }
+    let regex = new Regex(charSet, allowedRegexStructures, targetLength)
     console.log("generated regex", regex)
-    return new RegExp(regex)
+    // prevent regexes without any structures
+    if (regex.generate().source.split("").filter(token => !charSet.includes(token)).length == 0)
+      return this.generateRegex(allowedRegexStructures, complexity)
+    return regex
   }
 
 }

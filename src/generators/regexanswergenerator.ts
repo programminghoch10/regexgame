@@ -6,12 +6,14 @@
  * @param correctAnswerMatches if true, one answer is correct, if false, one answer is incorrect
  * @returns an array of possible answers
  */
-function generateRegexAnswers(regex: RegExp, answerCount: number, correctAnswerMatches?: boolean): string[] {
+function generateRegexAnswers(regex: Regex, answerCount: number, correctAnswerMatches?: boolean): string[] {
   if (correctAnswerMatches == undefined) correctAnswerMatches = true
   if (answerCount < 1) throw "invalid answerCount " + answerCount
   let answers = []
-  answers[0] = regex.source
-  for (let i = 1; i < answerCount; i++) answers[i] = RegexGenerator.getRandomCharSet()
+  for (let i = 0; i < answerCount; i++)
+    answers[i] = regex.generatePossibleAnswer()
+  answers = removeDuplicatesFromArray(answers)
   answers = shuffleArray(answers)
+  answers.map(answer => answer.length == 0 ? "&nbsp;" : answer)
   return answers
 }
