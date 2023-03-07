@@ -10,6 +10,13 @@ class RegexGenerator {
   static charSets: string[] = [
     "abc",
     "xyz",
+    "vw",
+    "mnMN",
+    "dbpq",
+    "lIij",
+    "wtf",
+    "oOQCc",
+    //"1234567890",
   ]
 
   static getRandomCharSet(): string {
