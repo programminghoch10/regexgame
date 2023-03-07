@@ -36,7 +36,7 @@ class RegexSequence extends RegexPartWrapperBase {
       .join("")
   }
 
-  generatePossibleAnswer(lengthFactor?: number): string {
+  generatePossibleAnswer(lengthFactor: number): string {
     return this.sequence
       .map(regexPart => regexPart.generatePossibleAnswer(lengthFactor))
       .join("")

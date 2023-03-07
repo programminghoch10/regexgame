@@ -24,7 +24,7 @@ class Regex {
     if (length == 0) throw "trying to create zero length regex part"
     if (outerRegexPart != undefined && outerRegexPart.regexStructure != undefined)
       allowedRegexStructures = new Set([...allowedRegexStructures].filter(structure => structure != outerRegexPart.regexStructure))
-    let regexStructure: RegexStructure = this.getRandomRegexStructure(allowedRegexStructures)
+    let regexStructure = RegexComplexity.getRegexStructure(allowedRegexStructures)
     switch (regexStructure) {
       case RegexStructure.SINGLE_CHARACTER:
         return new RegexSingleCharacter(charSet)
@@ -46,9 +46,7 @@ class Regex {
   }
 
   static createRandomQuantification(allowedRegexStructures: Set<RegexStructure>): RegexQuantifierBase | undefined {
-    allowedRegexStructures = new Set([...REGEX_QUANTIFIERS].filter(q => allowedRegexStructures.has(q)))
-    if (chance(0.2)) return undefined
-    const regexQuantifier = getRandomElementFromArray([...allowedRegexStructures])
+    const regexQuantifier = RegexComplexity.getRegexQuantifier(allowedRegexStructures)
     switch (regexQuantifier) {
       case RegexStructure.OPTIONAL_QUANTIFIER:
         return new RegexOptional()
@@ -58,6 +56,8 @@ class Regex {
         return new RegexAnyAmount()
       case RegexStructure.ABSOLUTE_NUMERIC_QUANTIFIER:
         return new RegexNumeric()
+      case undefined:
+        return undefined
       default:
         throw "cant generate regex quantifier " + getRegexStructureString(regexQuantifier)
     }

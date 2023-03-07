@@ -15,7 +15,7 @@ class RegexGroup extends RegexPartWrapperBase {
     const generatedQuantifier = this.quantifier.generate()
     if (generatedInnerRegex.length == 1)
       return generatedInnerRegex + generatedQuantifier
-    return "(" + generatedInnerRegex + ")" + this.quantifier.generate()
+    return "(" + generatedInnerRegex + ")" + generatedQuantifier
   }
 
   generatePossibleAnswer(lengthFactor: number): string {

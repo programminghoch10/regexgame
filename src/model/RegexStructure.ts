@@ -24,6 +24,14 @@ const REGEX_QUANTIFIERS: Set<RegexStructure> = new Set([
   RegexStructure.ABSOLUTE_NUMERIC_QUANTIFIER,
 ])
 
+// set of all regex structures, which are not quantifiers
+const REGEX_STRUCTURES: Set<RegexStructure> = new Set([
+  ...Object.entries(RegexStructure)
+    .filter(entry => typeof entry[1] == "number")
+    .filter(entry => !REGEX_QUANTIFIERS.has(entry[1] as RegexStructure))
+    .map(entry => entry[1] as RegexStructure)
+])
+
 /**
  * Convert a string into the RegexStructure equivalent
  *
