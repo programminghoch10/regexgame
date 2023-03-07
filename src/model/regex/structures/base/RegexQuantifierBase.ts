@@ -9,10 +9,9 @@ abstract class RegexQuantifierBase {
 
   generatePossibleAnswer(regexPart: RegexPartBase, lengthFactor: number): string {
     const quantification = this.generatePossibleQuantification(lengthFactor)
-    let possibleRegexPartAnswer = regexPart.generatePossibleAnswer(lengthFactor)
     let possibleAnswer = ""
     for (let i = 0; i < quantification; i++)
-      possibleAnswer += possibleRegexPartAnswer
+      possibleAnswer += regexPart.generatePossibleAnswer(lengthFactor)
     return possibleAnswer
   }
 
