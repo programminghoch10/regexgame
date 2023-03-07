@@ -2,32 +2,26 @@ class RegexSequence extends RegexPartWrapperBase {
 
   sequence: Array<RegexPartBase>
 
-  // target length of this regex part
-  length: number
-
-  constructor(charSet: string, allowedRegexStructures: Set<RegexStructure>, length: number, fillLength?: boolean) {
-    super(charSet, allowedRegexStructures)
-    if (fillLength == undefined) fillLength = false
-    if (!fillLength) length = getRandomIntegerFromRange(length / 2, length)
-    this.length = length
+  constructor(charSet: string, nesting: number, allowedRegexStructures: Set<RegexStructure>, complexity: number, maximumLength?: boolean) {
+    super(charSet, nesting, allowedRegexStructures)
+    if (maximumLength == undefined) maximumLength = false
+    let splitCount = RegexComplexity.calculateSequenceSplitCount(complexity)
+    if (!maximumLength) splitCount = getRandomInteger(splitCount)
     this.sequence = []
     let sequence: Array<RegexPartBase> = []
-    let sequenceLength = 0
-    while (sequenceLength < length) {
+    for (let i = 0; i < splitCount; i++) {
       sequence.push(
         Regex.createRegexPart(
           charSet,
+          nesting,
           this.allowedRegexStructures,
-          getRandomIntegerFromRange(1, length - sequenceLength)
+          RegexComplexity.calculateSequenceInnerComplexity(complexity, splitCount),
+          this
         )
       )
-      sequenceLength = RegexSequence.getSequenceLength(sequence)
     }
+    sequence = sequence.filter(part => part.generate().length > 0)
     this.sequence = shuffleArray(sequence)
-  }
-
-  static getSequenceLength(sequence: Array<RegexPartBase>) {
-    return sequence.map(e => e.generate().length).reduce((a, b) => a + b, 0)
   }
 
   generate(): string {

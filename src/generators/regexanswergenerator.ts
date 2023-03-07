@@ -14,6 +14,6 @@ function generateRegexAnswers(regex: Regex, answerCount: number, correctAnswerMa
     answers[i] = regex.generatePossibleAnswer()
   answers = removeDuplicatesFromArray(answers)
   answers = shuffleArray(answers)
-  answers.map(answer => answer.length == 0 ? "&nbsp;" : answer)
+  answers = answers.map(answer => answer.length == 0 ? "&nbsp;" : answer)
   return answers
 }

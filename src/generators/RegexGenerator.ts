@@ -31,13 +31,11 @@ class RegexGenerator {
    * @returns the generated regex
    */
   static generateRegex(allowedRegexStructures: Set<RegexStructure>, complexity: number): Regex {
-    let targetLength = this.minimumLength + getRandomIntegerFromRange(complexity / 2, complexity)
-    targetLength = clamp(targetLength, this.minimumLength, this.maximumLength)
     let charSet = this.getRandomCharSet()
-    let regex = new Regex(charSet, allowedRegexStructures, targetLength)
+    let regex = new Regex(charSet, allowedRegexStructures, complexity)
     console.log("generated regex", regex)
     // prevent regexes without any structures
-    if (regex.generate().source.split("").filter(token => !charSet.includes(token)).length == 0)
+    if (regex.generate().split("").filter(token => !charSet.includes(token)).length == 0)
       return this.generateRegex(allowedRegexStructures, complexity)
     return regex
   }

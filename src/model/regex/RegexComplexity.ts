@@ -221,12 +221,24 @@ class RegexComplexity {
 
   // calculate complexity for a certain nesting level
   static calculateNestedComplexity(complexity: number, nestingLevel: number) {
-    // decrease the complexity by one for every nesting level
-    return Math.max(complexity - nestingLevel, 0)
+    // the higher the slowness factor, the slower the complexity will decrease with increased nesting level
+    const slownessFactor = 6
+    return Math.max(complexity * (slownessFactor / (nestingLevel + slownessFactor)), 0)
   }
 
   static calculateLengthFromComplexity(complexity: number): number {
     if (complexity == 0) return 1
     return Math.round(Math.log(Math.pow(complexity, 2)) + 1)
+  }
+
+  // calculate how many splits a Sequence should have
+  static calculateSequenceSplitCount(complexity: number): number {
+    return Math.floor(this.calculateLengthFromComplexity(complexity) / 2)
+  }
+
+  static calculateSequenceInnerComplexity(complexity: number, splitCount?: number): number {
+    if (splitCount == undefined)
+      splitCount = this.calculateSequenceSplitCount(complexity)
+    return Math.max(complexity - splitCount, 0)
   }
 }

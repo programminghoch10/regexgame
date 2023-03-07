@@ -24,8 +24,7 @@ const defaultConfiguration: GameConfiguration = new GameConfiguration("", new Se
  */
 function generateRiddle(configuration?: GameConfiguration): Riddle {
   if (configuration === undefined) configuration = defaultConfiguration
-  // TODO: replace stub with actual generation
   let regex = RegexGenerator.generateRegex(configuration.allowedRegexStructures, configuration.complexity)
   let answers = generateRegexAnswers(regex, configuration.answerCount)
-  return new Riddle(regex.generate(), answers)
+  return new Riddle(regex.generateRegExp(), answers)
 }

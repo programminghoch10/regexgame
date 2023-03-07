@@ -1,45 +1,51 @@
 class Regex {
   private regex: RegexPartBase
-  private length: number
-  constructor(charSet: string, allowedRegexStructures: Set<RegexStructure>, length: number) {
-    this.regex = new RegexSequence(charSet, allowedRegexStructures, length, true)
-    this.length = length
+  private complexity: number
+  constructor(charSet: string, allowedRegexStructures: Set<RegexStructure>, complexity: number) {
+    this.regex = new RegexSequence(charSet, 0, allowedRegexStructures, complexity, true)
+    this.complexity = complexity
   }
 
-  generate(): RegExp {
-    return new RegExp(this.regex.generate())
+  generate(): string {
+    return this.regex.generate()
+  }
+
+  generateRegExp(): RegExp {
+    return new RegExp(this.generate())
   }
 
   generatePossibleAnswer(lengthFactor?: number): string {
-    if (!lengthFactor) lengthFactor = this.length / 2
+    if (!lengthFactor) lengthFactor = this.complexity / 2
     return this.regex.generatePossibleAnswer(lengthFactor)
   }
 
   static createRegexPart(
     charSet: string,
+    nesting: number,
     allowedRegexStructures: Set<RegexStructure>,
-    length: number,
+    complexity: number,
     outerRegexPart?: RegexPartWrapperBase
   ): RegexPartBase {
-    if (length == 0) throw "trying to create zero length regex part"
     if (outerRegexPart != undefined && outerRegexPart.regexStructure != undefined)
       allowedRegexStructures = new Set([...allowedRegexStructures].filter(structure => structure != outerRegexPart.regexStructure))
-    let regexStructure = RegexComplexity.getRegexStructure(allowedRegexStructures)
+    nesting++
+    complexity = RegexComplexity.calculateNestedComplexity(complexity, nesting)
+    let regexStructure = RegexComplexity.getRegexStructure(allowedRegexStructures, complexity)
     switch (regexStructure) {
       case RegexStructure.SINGLE_CHARACTER:
         return new RegexSingleCharacter(charSet)
       case RegexStructure.ANY_SINGLE_CHARACTER:
         return new RegexAnySingleCharacter(charSet)
       case RegexStructure.CHARACTER_SEQUENCE:
-        return new RegexSingleCharacterSequence(charSet, length)
+        return new RegexSingleCharacterSequence(charSet, nesting, complexity)
       case RegexStructure.GROUP:
-        return new RegexGroup(charSet, allowedRegexStructures, length, this.createRandomQuantification(allowedRegexStructures))
+        return new RegexGroup(charSet, nesting, allowedRegexStructures, complexity, this.createRandomQuantification(allowedRegexStructures))
       case RegexStructure.CHARACTER_CLASS:
         return new RegexCharacterClass(charSet)
       case RegexStructure.CHARACTER_CLASS_INVERTED:
         return new RegexCharacterClassInverted(charSet)
       case RegexStructure.DISJUNCTION:
-        return new RegexDisjunction(charSet, allowedRegexStructures, length)
+        return new RegexDisjunction(charSet, nesting, allowedRegexStructures, complexity)
       default:
         throw "cant generate regex structure " + getRegexStructureString(regexStructure)
     }
