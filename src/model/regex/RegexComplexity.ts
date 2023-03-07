@@ -215,7 +215,7 @@ class RegexComplexity {
    * @returns the complexity for this round
    */
   static calculateRoundComplexityFactor(round: number) {
-    // linearly increase the complexity by 50% per round
+    // linearly increase the complexity
     return round * 2
   }
 
