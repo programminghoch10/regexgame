@@ -15,7 +15,7 @@ class Regex {
   }
 
   generatePossibleAnswer(lengthFactor?: number): string {
-    if (!lengthFactor) lengthFactor = this.complexity / 2
+    if (!lengthFactor) lengthFactor = this.generate().length / 2
     return this.regex.generatePossibleAnswer(lengthFactor)
   }
 

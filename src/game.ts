@@ -21,6 +21,11 @@ const answersDiv = document.querySelector("#answers")! as HTMLDivElement
 var currentRiddle: Riddle | undefined
 
 /**
+ * the current round
+ */
+var round: number
+
+/**
  * Display a riddle to the user
  * @param riddle the riddle to display
  */
@@ -38,13 +43,19 @@ async function displayRiddle(riddle: Riddle) {
 }
 
 function nextRiddle() {
+  round++
   try {
-    displayRiddle(generateRiddle())
+    displayRiddle(generateRiddle(round))
   } catch (e) {
     console.error("error creating next riddle", e)
     //TODO: notify user?
-    switchToStartPage()
+    gameEnd()
   }
+}
+
+function gameEnd() {
+  displayScore()
+  switchToStartPage()
 }
 
 function removeCurrentRiddle() {
@@ -57,15 +68,13 @@ let nextAnswerTimeout: number | undefined
 function onAnswerSelected(button: HTMLButtonElement, answer: string) {
   if (!currentRiddle) throw "current riddle undefined"
   if (answersDiv.querySelector("button.selected")) {
-    if (nextAnswerTimeout !== undefined) {
+    let correctAnswer = answersDiv.querySelector("button.selected.correct") != undefined
+    if (correctAnswer && nextAnswerTimeout !== undefined) {
       clearTimeout(nextAnswerTimeout)
       nextAnswerTimeout = undefined
     }
-    let correctAnswer = answersDiv.querySelector("button.selected.correct") != undefined
     if (correctAnswer)
       nextRiddle()
-    else
-      switchToStartPage()
     return
   }
   const riddleRegex: RegExp = new RegExp(`^${currentRiddle.regex.source}$`)
@@ -77,6 +86,6 @@ function onAnswerSelected(button: HTMLButtonElement, answer: string) {
     if (correctAnswer)
       nextRiddle()
     else
-      switchToStartPage()
-  }, 3000)
+      gameEnd()
+  }, correctAnswer ? 1000 : 5000)
 }

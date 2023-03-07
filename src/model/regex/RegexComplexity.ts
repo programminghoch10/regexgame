@@ -43,7 +43,7 @@ const REGEX_COMPLEXITY_QUANTIFIER = new Map<RegexStructure | undefined, number>(
 
 const REGEX_COMPLEXITY_STRUCTURE = new Map<RegexStructure, number>([
   [RegexStructure.SINGLE_CHARACTER, 0.5],
-  [RegexStructure.CHARACTER_SEQUENCE, 0.9],
+  [RegexStructure.CHARACTER_SEQUENCE, 0.8],
   [RegexStructure.ANY_SINGLE_CHARACTER, 1.1],
   [RegexStructure.GROUP, 1.1],
   [RegexStructure.CHARACTER_CLASS, 1],
@@ -120,7 +120,7 @@ class RegexComplexity {
   private static retrieveWeightedRandomResultKey<T>(weightedRandomMap: Map<T, number>): T {
     const neutralizedRandomMap = this.neutralizeProbabilities(weightedRandomMap)
     const cumulativeRandomMap = this.convertToCumulativeProbabilities(neutralizedRandomMap)
-    const random = Math.random();
+    const random = Math.random()
     // get the first element where the cumulative probability is greater than random
     return [...cumulativeRandomMap.entries()]
       .filter(value => value[1] > random) //filter every value smaller than random
@@ -161,11 +161,11 @@ class RegexComplexity {
     if (complexity < 0) throw "invalid complexity " + complexity
     if (complexity == 0) return 1
     // normalize the complexity using log to dampen its effect
-    const normalizedComplexity = Math.log(complexity * 0.5) * 0.5
-    if (normalizedComplexity < 0) return 0
+    const normalizedComplexity = Math.log(complexity * 0.5)
+    if (isNaN(normalizedComplexity) || normalizedComplexity < 0) return 0
     // the nearer normalizedComplexity is to zero, the more complexityMapValue is to 1
     // this will make the complexityMapValue more effective the higher the complexity is
-    const normalizedComplexityMapValue = ((complexityMapValue - 1) * normalizedComplexity) + 1
+    const normalizedComplexityMapValue = Math.pow(complexityMapValue, normalizedComplexity)
     return normalizedComplexityMapValue
   }
 
@@ -214,9 +214,9 @@ class RegexComplexity {
    * @param round which round this is
    * @returns the complexity for this round
    */
-  static calculateNextComplexityFactor(round: number) {
+  static calculateRoundComplexityFactor(round: number) {
     // linearly increase the complexity by 50% per round
-    return round * 1.5
+    return round * 2
   }
 
   // calculate complexity for a certain nesting level

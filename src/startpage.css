@@ -9,6 +9,16 @@
   margin-bottom: 3rem;
 }
 
+#startpage > h2#score {
+  display: none;
+  margin: 1rem;
+  margin-top: -2rem;
+}
+
+#startpage.finished > h2#score {
+  display: unset;
+}
+
 #startpage #buttons {
   margin: 1em;
   display: flex;
@@ -63,7 +73,7 @@
   transition-delay: 250ms;
 }
 
-#playbutton > p#offline {
+#playbutton > p#offline, #playbutton > p#again {
   position: absolute;
   bottom: 0.6em;
   left: calc(38%);
@@ -71,7 +81,8 @@
   transition-delay: 500ms;
 }
 
-#playbutton.offline > p#offline {
+#playbutton.offline:not(.again) > p#offline,
+#playbutton.again > p#again {
   opacity: 0.75;
 }
 

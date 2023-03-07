@@ -22,9 +22,11 @@ const defaultConfiguration: GameConfiguration = new GameConfiguration("", new Se
  * @param configuration The game configuration specifying the riddle
  * @returns the generated riddle
  */
-function generateRiddle(configuration?: GameConfiguration): Riddle {
+function generateRiddle(round?: number, configuration?: GameConfiguration): Riddle {
   if (configuration === undefined) configuration = defaultConfiguration
-  let regex = RegexGenerator.generateRegex(configuration.allowedRegexStructures, configuration.complexity)
+  let complexity = configuration.complexity
+  if (round != undefined) complexity += RegexComplexity.calculateRoundComplexityFactor(round)
+  let regex = RegexGenerator.generateRegex(configuration.allowedRegexStructures, complexity)
   let answers = generateRegexAnswers(regex, configuration.answerCount)
   return new Riddle(regex.generateRegExp(), answers)
 }
