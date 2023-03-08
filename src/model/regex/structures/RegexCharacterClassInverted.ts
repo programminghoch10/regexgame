@@ -15,6 +15,8 @@ class RegexCharacterClassInverted extends RegexCharacterClass {
   generatePossiblyWrongAnswer(lengthFactor: number, wrongChance: number): string {
     if (chance(1 - wrongChance))
       return this.generateCorrectAnswer()
+    if (chance(0.05))
+      return [...this.chars].join("")
     const wrongChars = this.charSet.split("").filter(char => this.chars.has(char))
     if (wrongChars.length == 0)
       return this.generateCorrectAnswer()

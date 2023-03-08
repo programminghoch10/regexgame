@@ -16,9 +16,7 @@ function generateRegexAnswers(regex: Regex, answerCount: number, correctAnswerRa
     answers.push(regex.generateCorrectAnswer())
   for (let i = 0; i < incorrectAnswerCount; i++)
     answers.push(regex.generateWrongAnswer())
-  console.log("before duplicates", answers)
   answers = removeDuplicatesFromArray(answers)
-  console.log("after duplicates", answers)
   answers = shuffleArray(answers)
   answers = answers.map(answer => answer.length == 0 ? "&nbsp;" : answer)
   return answers

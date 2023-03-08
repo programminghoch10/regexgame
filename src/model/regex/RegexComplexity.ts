@@ -16,12 +16,12 @@ const REGEX_PROBABILITY_QUANTIFIER = new Map<RegexStructure | undefined, number>
 
 const REGEX_PROBABILITY_STRUCTURE = new Map<RegexStructure, number>([
   [RegexStructure.SINGLE_CHARACTER, 0],
-  [RegexStructure.CHARACTER_SEQUENCE, 2],
-  [RegexStructure.ANY_SINGLE_CHARACTER, 0.8],
+  [RegexStructure.CHARACTER_SEQUENCE, 1],
+  [RegexStructure.ANY_SINGLE_CHARACTER, 0.7],
   [RegexStructure.GROUP, 0.5],
   [RegexStructure.CHARACTER_CLASS, 0.4],
   [RegexStructure.DISJUNCTION, 0.3],
-  [RegexStructure.CHARACTER_CLASS_INVERTED, 0.1],
+  [RegexStructure.CHARACTER_CLASS_INVERTED, 0.01],
 ])
 
 
@@ -48,7 +48,7 @@ const REGEX_COMPLEXITY_STRUCTURE = new Map<RegexStructure, number>([
   [RegexStructure.GROUP, 1.1],
   [RegexStructure.CHARACTER_CLASS, 1],
   [RegexStructure.DISJUNCTION, 1.1],
-  [RegexStructure.CHARACTER_CLASS_INVERTED, 1.05],
+  [RegexStructure.CHARACTER_CLASS_INVERTED, 1.005],
 ])
 
 
@@ -222,7 +222,7 @@ class RegexComplexity {
   // calculate complexity for a certain nesting level
   static calculateNestedComplexity(complexity: number, nestingLevel: number) {
     // the higher the slowness factor, the slower the complexity will decrease with increased nesting level
-    const slownessFactor = 6
+    const slownessFactor = 2
     return Math.max(complexity * (slownessFactor / (nestingLevel + slownessFactor)), 0)
   }
 
@@ -243,10 +243,11 @@ class RegexComplexity {
   }
 
   static calculateAnswerLengthFactor(complexity: number, regexLength: number): number {
-    return regexLength / 3
+    return regexLength
   }
 
   static calculateWrongChanceFromComplexity(complexity: number): number {
-    return 0.2
+    if (complexity < 0) complexity = 0
+    return 0.2 / (complexity + 1)
   }
 }

@@ -15,6 +15,7 @@ class RegexSingleCharacter extends RegexPartBase {
   }
 
   generatePossiblyWrongAnswer(lengthFactor: number, wrongChance: number): string {
+    if (!chance(wrongChance)) return this.generateCorrectAnswer()
     return getRandomElementFromArray(this.charSet.split("").filter(char => this.character !== char))
   }
 }

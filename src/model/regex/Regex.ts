@@ -27,7 +27,6 @@ class Regex {
     if (!lengthFactor) lengthFactor = RegexComplexity.calculateAnswerLengthFactor(this.complexity, this.length)
     if (!wrongChance) wrongChance = RegexComplexity.calculateWrongChanceFromComplexity(this.complexity)
     const answer = this.regex.generatePossiblyWrongAnswer(lengthFactor, wrongChance)
-    console.log("possible wrong answer", answer, this.generateRegExp(), this.generateRegExp().test(answer))
     if (!this.generateRegExp().test(answer))
       return answer
     // if the generated answer is correct, increase the wrong chance and try again
