@@ -3,4 +3,8 @@ class RegexAtLeastOne extends RegexQuantifierBase {
   generateCorrectQuantification(lengthFactor: number): number {
     return getRandomIntegerFromRange(1, lengthFactor)
   }
+  generateWrongQuantification(lengthFactor: number): number {
+    // zero is the only wrong quantification
+    return 0
+  }
 }

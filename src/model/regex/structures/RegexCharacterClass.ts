@@ -16,4 +16,12 @@ class RegexCharacterClass extends RegexPartBase {
   generateCorrectAnswer(): string {
     return getRandomElementFromArray([...this.chars])
   }
+  generatePossiblyWrongAnswer(lengthFactor: number, wrongChance: number): string {
+    if (chance(1 - wrongChance))
+      return this.generateCorrectAnswer()
+    const wrongChars = this.charSet.split("").filter(char => !this.chars.has(char))
+    if (wrongChars.length == 0)
+      return this.generateCorrectAnswer()
+    return getRandomElementFromArray(wrongChars)
+  }
 }

@@ -19,4 +19,11 @@ abstract class RegexPartBase {
    * generate a possible answer that would solve this regex
    */
   abstract generateCorrectAnswer(lengthFactor: number): string
+
+  /**
+   * Generate an answer that is likely to be wrong
+   * returns a correct answer or by chance an answer that may be wrong
+   * @param wrongChance probability for the answer to be tainted
+   */
+  abstract generatePossiblyWrongAnswer(lengthFactor: number, wrongChance: number): string
 }

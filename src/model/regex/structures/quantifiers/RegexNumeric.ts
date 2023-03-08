@@ -33,4 +33,14 @@ class RegexNumeric extends RegexQuantifierBase {
       return getRandomIntegerFromRange(this.absoluteMinimum!, lengthFactor)
     return getRandomIntegerFromRange(this.absoluteMinimum!, this.absoluteMaximum!)
   }
+  generateWrongQuantification(lengthFactor: number): number {
+    if (this.absolute != undefined)
+      return this.absolute + getRandomIntegerFromRange(Math.max(-lengthFactor, 0), lengthFactor)
+    if (this.absoluteMaximum == undefined)
+      return getRandomIntegerFromRange(Math.max(0, this.absoluteMinimum! - lengthFactor), this.absoluteMinimum!)
+    if (chance(0.5))
+      return getRandomIntegerFromRange(Math.max(0, this.absoluteMinimum! - lengthFactor), this.absoluteMinimum!)
+    else
+      return getRandomIntegerFromRange(this.absoluteMaximum, this.absoluteMaximum + lengthFactor)
+  }
 }

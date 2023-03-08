@@ -241,4 +241,12 @@ class RegexComplexity {
       splitCount = this.calculateSequenceSplitCount(complexity)
     return Math.max(complexity - splitCount, 0)
   }
+
+  static calculateAnswerLengthFactor(complexity: number, regexLength: number): number {
+    return regexLength / 3
+  }
+
+  static calculateWrongChanceFromComplexity(complexity: number): number {
+    return 0.2
+  }
 }

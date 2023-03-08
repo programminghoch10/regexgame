@@ -25,4 +25,10 @@ class RegexGroup extends RegexPartWrapperBase {
       return this.innerRegex.generateCorrectAnswer(lengthFactor)
     return this.quantifier.generateCorrectAnswer(this.innerRegex, lengthFactor)
   }
+
+  generatePossiblyWrongAnswer(lengthFactor: number, wrongChance: number): string {
+    if (!this.quantifier)
+      return this.innerRegex.generatePossiblyWrongAnswer(lengthFactor, wrongChance)
+    return this.quantifier.generatePossiblyWrongAnswer(this.innerRegex, lengthFactor, wrongChance)
+  }
 }

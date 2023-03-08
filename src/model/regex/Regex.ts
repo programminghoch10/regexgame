@@ -6,6 +6,10 @@ class Regex {
     this.complexity = complexity
   }
 
+  get length() {
+    return this.generate().length
+  }
+
   generate(): string {
     return this.regex.generate()
   }
@@ -15,8 +19,20 @@ class Regex {
   }
 
   generateCorrectAnswer(lengthFactor?: number): string {
-    if (!lengthFactor) lengthFactor = this.generate().length / 2
+    if (!lengthFactor) lengthFactor = RegexComplexity.calculateAnswerLengthFactor(this.complexity, this.length)
     return this.regex.generateCorrectAnswer(lengthFactor)
+  }
+
+  generateWrongAnswer(lengthFactor?: number, wrongChance?: number): string {
+    if (!lengthFactor) lengthFactor = RegexComplexity.calculateAnswerLengthFactor(this.complexity, this.length)
+    if (!wrongChance) wrongChance = RegexComplexity.calculateWrongChanceFromComplexity(this.complexity)
+    const answer = this.regex.generatePossiblyWrongAnswer(lengthFactor, wrongChance)
+    console.log("possible wrong answer", answer, this.generateRegExp(), this.generateRegExp().test(answer))
+    if (!this.generateRegExp().test(answer))
+      return answer
+    // if the generated answer is correct, increase the wrong chance and try again
+    wrongChance += Math.min(1 - wrongChance, 0.05)
+    return this.generateWrongAnswer(lengthFactor, wrongChance)
   }
 
   static createRegexPart(

@@ -35,4 +35,10 @@ class RegexSequence extends RegexPartWrapperBase {
       .map(regexPart => regexPart.generateCorrectAnswer(lengthFactor))
       .join("")
   }
+
+  generatePossiblyWrongAnswer(lengthFactor: number, wrongChance: number): string {
+    return this.sequence
+      .map(regexPart => regexPart.generatePossiblyWrongAnswer(lengthFactor, wrongChance))
+      .join("")
+  }
 }

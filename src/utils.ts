@@ -25,13 +25,13 @@ function shuffleArray<T>(array: Array<T>): Array<T> {
   let newArray = new Array(...array)
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(getRandomNumber() * (i + 1));
-    [newArray[i], newArray[j]] = [array[j], array[i]];
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
   }
   return newArray
 }
 
 function removeDuplicatesFromArray<T>(array: Array<T>): Array<T> {
-  return array.filter((value, index) => array.indexOf(value) == index)
+  return array.filter((value, index, array) => array.indexOf(value) == index)
 }
 
 function clamp(value: number, minimum: number, maximum: number): number {
