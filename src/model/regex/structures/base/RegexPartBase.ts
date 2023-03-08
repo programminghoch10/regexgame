@@ -18,5 +18,5 @@ abstract class RegexPartBase {
   /**
    * generate a possible answer that would solve this regex
    */
-  abstract generatePossibleAnswer(lengthFactor: number): string
+  abstract generateCorrectAnswer(lengthFactor: number): string
 }

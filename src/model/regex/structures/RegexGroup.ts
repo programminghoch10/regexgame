@@ -20,9 +20,9 @@ class RegexGroup extends RegexPartWrapperBase {
     return "(" + generatedInnerRegex + ")" + generatedQuantifier
   }
 
-  generatePossibleAnswer(lengthFactor: number): string {
+  generateCorrectAnswer(lengthFactor: number): string {
     if (!this.quantifier)
-      return this.innerRegex.generatePossibleAnswer(lengthFactor)
-    return this.quantifier.generatePossibleAnswer(this.innerRegex, lengthFactor)
+      return this.innerRegex.generateCorrectAnswer(lengthFactor)
+    return this.quantifier.generateCorrectAnswer(this.innerRegex, lengthFactor)
   }
 }

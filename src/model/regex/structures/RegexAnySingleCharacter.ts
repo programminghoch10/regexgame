@@ -2,7 +2,7 @@ class RegexAnySingleCharacter extends RegexPartBase {
   generate(): string {
     return "."
   }
-  generatePossibleAnswer(): string {
+  generateCorrectAnswer(): string {
     return getRandomElementFromArray(this.charSet.split(""))
   }
 }

@@ -11,7 +11,7 @@ function generateRegexAnswers(regex: Regex, answerCount: number, correctAnswerMa
   if (answerCount < 1) throw "invalid answerCount " + answerCount
   let answers = []
   for (let i = 0; i < answerCount; i++)
-    answers[i] = regex.generatePossibleAnswer()
+    answers[i] = regex.generateCorrectAnswer()
   answers = removeDuplicatesFromArray(answers)
   answers = shuffleArray(answers)
   answers = answers.map(answer => answer.length == 0 ? "&nbsp;" : answer)

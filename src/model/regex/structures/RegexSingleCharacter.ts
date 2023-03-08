@@ -10,7 +10,7 @@ class RegexSingleCharacter extends RegexPartBase {
     return this.character
   }
 
-  generatePossibleAnswer(): string {
+  generateCorrectAnswer(): string {
     return this.character
   }
 }

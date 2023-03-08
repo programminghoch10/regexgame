@@ -1,6 +1,6 @@
 class RegexOptional extends RegexQuantifierBase {
   quantifierSymbol: string = "?"
-  generatePossibleQuantification(): number {
+  generateCorrectQuantification(): number {
     return getRandomIntegerFromRange(0, 1)
   }
 }

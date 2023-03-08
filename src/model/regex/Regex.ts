@@ -14,9 +14,9 @@ class Regex {
     return new RegExp(`^${this.generate()}$`)
   }
 
-  generatePossibleAnswer(lengthFactor?: number): string {
+  generateCorrectAnswer(lengthFactor?: number): string {
     if (!lengthFactor) lengthFactor = this.generate().length / 2
-    return this.regex.generatePossibleAnswer(lengthFactor)
+    return this.regex.generateCorrectAnswer(lengthFactor)
   }
 
   static createRegexPart(

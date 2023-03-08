@@ -9,9 +9,9 @@ class RegexDisjunction extends RegexSequence {
       return ""
     return "(" + this.sequence.map(o => o.generate()).join("|") + ")"
   }
-  generatePossibleAnswer(lengthFactor: number): string {
+  generateCorrectAnswer(lengthFactor: number): string {
     if (this.sequence.length == 0)
       return ""
-    return getRandomElementFromArray(this.sequence).generatePossibleAnswer(lengthFactor)
+    return getRandomElementFromArray(this.sequence).generateCorrectAnswer(lengthFactor)
   }
 }

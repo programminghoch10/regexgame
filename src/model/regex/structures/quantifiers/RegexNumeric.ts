@@ -24,7 +24,7 @@ class RegexNumeric extends RegexQuantifierBase {
       }
     }
   }
-  generatePossibleQuantification(lengthFactor: number): number {
+  generateCorrectQuantification(lengthFactor: number): number {
     if (this.absolute != undefined)
       return this.absolute
     if (lengthFactor < this.absoluteMinimum!)

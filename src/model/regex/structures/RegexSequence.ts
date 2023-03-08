@@ -30,9 +30,9 @@ class RegexSequence extends RegexPartWrapperBase {
       .join("")
   }
 
-  generatePossibleAnswer(lengthFactor: number): string {
+  generateCorrectAnswer(lengthFactor: number): string {
     return this.sequence
-      .map(regexPart => regexPart.generatePossibleAnswer(lengthFactor))
+      .map(regexPart => regexPart.generateCorrectAnswer(lengthFactor))
       .join("")
   }
 }

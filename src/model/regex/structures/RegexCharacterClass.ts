@@ -13,7 +13,7 @@ class RegexCharacterClass extends RegexPartBase {
       return [...this.chars][0]
     return "[" + [...this.chars].join("") + "]"
   }
-  generatePossibleAnswer(): string {
+  generateCorrectAnswer(): string {
     return getRandomElementFromArray([...this.chars])
   }
 }

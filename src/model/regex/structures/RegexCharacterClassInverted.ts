@@ -7,7 +7,7 @@ class RegexCharacterClassInverted extends RegexCharacterClass {
   generate(): string {
     return "[^" + [...this.chars].join("") + "]"
   }
-  generatePossibleAnswer(): string {
+  generateCorrectAnswer(): string {
     const possibleCharacters = this.charSet.split("").filter(char => !this.chars.has(char))
     return getRandomElementFromArray(possibleCharacters)
   }
