@@ -28,5 +28,5 @@ function generateRiddle(round?: number, configuration?: GameConfiguration): Ridd
   if (round != undefined) complexity += RegexComplexity.calculateRoundComplexityFactor(round)
   let regex = RegexGenerator.generateRegex(configuration.allowedRegexStructures, complexity)
   let answers = generateRegexAnswers(regex, configuration.answerCount)
-  return new Riddle(regex.generateRegExp(), answers)
+  return new Riddle(regex, answers)
 }

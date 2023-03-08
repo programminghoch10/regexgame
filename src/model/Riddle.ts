@@ -1,12 +1,12 @@
 
 class Riddle {
-  regex: RegExp
+  regex: Regex
   answers: Array<string>
 
   // whether this riddle is solved correctly if the regex matched
   solvedOnMatch: boolean = true
 
-  constructor(regex: RegExp, answers: Array<string>) {
+  constructor(regex: Regex, answers: Array<string>) {
     this.regex = regex
     this.answers = answers
   }

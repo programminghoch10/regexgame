@@ -11,12 +11,16 @@ class RegexNumeric extends RegexQuantifierBase {
   }
   constructor() {
     super()
-    if (chance(0.5)) {
+    if (chance(0.75)) {
       this.absolute = getRandomIntegerFromRange(0, 9)
     } else {
       this.absoluteMinimum = getRandomIntegerFromRange(0, 9)
-      if (chance(0.5)) {
+      if (chance(0.75)) {
         this.absoluteMaximum = getRandomIntegerFromRange(this.absoluteMinimum, 9)
+      }
+      if (this.absoluteMinimum === this.absoluteMaximum && chance(0.95)) {
+        this.absolute = this.absoluteMinimum
+        this.absoluteMinimum = this.absoluteMaximum = undefined
       }
     }
   }

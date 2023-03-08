@@ -120,7 +120,7 @@ class RegexComplexity {
   private static retrieveWeightedRandomResultKey<T>(weightedRandomMap: Map<T, number>): T {
     const neutralizedRandomMap = this.neutralizeProbabilities(weightedRandomMap)
     const cumulativeRandomMap = this.convertToCumulativeProbabilities(neutralizedRandomMap)
-    const random = Math.random()
+    const random = getRandomNumber()
     // get the first element where the cumulative probability is greater than random
     return [...cumulativeRandomMap.entries()]
       .filter(value => value[1] > random) //filter every value smaller than random

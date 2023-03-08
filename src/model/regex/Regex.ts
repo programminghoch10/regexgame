@@ -11,7 +11,7 @@ class Regex {
   }
 
   generateRegExp(): RegExp {
-    return new RegExp(this.generate())
+    return new RegExp(`^${this.generate()}$`)
   }
 
   generatePossibleAnswer(lengthFactor?: number): string {

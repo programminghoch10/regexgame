@@ -8,7 +8,7 @@ function getRandomElementFromArray<T>(array: Array<T>): T {
 function getRandomInteger(maximum: number) {
   maximum = Math.round(maximum)
   if (maximum < 0) throw "invalid maximum number"
-  return Math.round(Math.random() * maximum)
+  return Math.round(getRandomNumber() * maximum)
 }
 
 // return a random integer between and including minimum and maximum
@@ -24,7 +24,7 @@ function getRandomIntegerFromRange(minimum: number, maximum: number) {
 function shuffleArray<T>(array: Array<T>): Array<T> {
   let newArray = new Array(...array)
   for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(getRandomNumber() * (i + 1));
     [newArray[i], newArray[j]] = [array[j], array[i]];
   }
   return newArray
@@ -44,5 +44,17 @@ function clamp(value: number, minimum: number, maximum: number): number {
  */
 function chance(probability: number): boolean {
   if (probability > 1 || probability < 0) throw "invalid chance range"
-  return Math.random() < probability
+  return getRandomNumber() < probability
+}
+
+/**
+ * get a random number between 0 (inclusive) and 1 (exclusive)
+ */
+function getRandomNumber(): number {
+  if (window.crypto) {
+    let randomInt = window.crypto.getRandomValues(new Uint32Array([0]))[0]
+    return randomInt / Math.pow(2, 32)
+  } else {
+    return Math.random()
+  }
 }

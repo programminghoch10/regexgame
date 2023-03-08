@@ -35,7 +35,7 @@ async function displayRiddle(riddle: Riddle) {
   setHidden(gameDiv, false)
   removeCurrentRiddle()
   currentRiddle = riddle
-  riddleDivP.innerText = riddle.regex.source
+  riddleDivP.innerText = riddle.regex.generate()
   riddle.answers.forEach(answer =>
     answersDiv.appendChild(generateAnswerButton(answer))
   )
@@ -77,7 +77,7 @@ function onAnswerSelected(button: HTMLButtonElement, answer: string) {
       nextRiddle()
     return
   }
-  const riddleRegex: RegExp = new RegExp(`^${currentRiddle.regex.source}$`)
+  const riddleRegex: RegExp = currentRiddle.regex.generateRegExp()
   const answerMatchesRiddle: boolean = riddleRegex.test(answer)
   const correctAnswer = answerMatchesRiddle == currentRiddle.solvedOnMatch
   button.classList.add(correctAnswer ? "correct" : "incorrect")
