@@ -1,0 +1,16 @@
+h1,
+p {
+  text-shadow:
+    0 0 1em currentColor,
+    0 0 2em currentColor;
+}
+
+.box-glow {
+  box-shadow:
+    0 0 5em currentColor,
+    0 0 1em currentColor inset;
+}
+
+.box-glow-light {
+  box-shadow: 0 0 1em currentColor;
+}

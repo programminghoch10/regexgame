@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "allowJs": false,
+    "strict": true,
+    "noImplicitAny": true,
+    "outDir": "src",
+    "rootDir": "src",
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": []
+}

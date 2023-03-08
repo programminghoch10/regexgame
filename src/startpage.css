@@ -1,0 +1,46 @@
+#startpage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#startpage > h1 {
+  margin: 1rem;
+  margin-bottom: 3rem;
+}
+
+#startpage #buttons {
+  margin: 1em;
+  display: flex;
+  gap: 2em;
+  flex-direction: row;
+}
+
+#startpage .button {
+  padding-inline: 3em;
+  padding-block: 1em;
+}
+
+.button.green {
+  color: #0d0;
+  transition:
+    ease-out color 250ms,
+    ease-in-out scale 500ms;
+}
+
+.button.green:hover {
+  color: #0f0;
+  scale: 1.1;
+}
+
+.button.red {
+  color: #d00;
+  transition:
+    ease-out color 250ms,
+    ease-in-out scale 500ms;
+}
+
+.button.red:hover {
+  color: #f00;
+  scale: 1.1;
+}

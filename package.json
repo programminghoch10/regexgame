@@ -1,0 +1,13 @@
+{
+  "name": "regexgame",
+  "description": "This game aims to improve a users understanding of regexes.",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc"
+  },
+  "homepage": "https://github.com/Gamify-IT/regexgame#readme",
+  "devDependencies": {
+    "@typescript/lib-dom": "npm:@types/web@^0.0.93",
+    "typescript": "^3.9.10"
+  }
+}
