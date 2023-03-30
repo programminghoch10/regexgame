@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="startpage.css">
     <link rel="stylesheet" href="game.css">
     <link rel="stylesheet" href="glow.css">
+    <script src="model/RegexStructure.js"></script>
+    <script src="model/GameConfiguration.js"></script>
+    <script src="api.js"></script>
     <script src="game.js" async defer></script>
     <script src="startpage.js" async defer></script>
     <script src="gameboxtransition.js" async defer></script>
@@ -21,9 +24,11 @@
         <h1>RegexGame</h1>
         <div id="buttons">
           <button id="playbutton"
-                  class="button box-glow-light green"
+                  class="button box-glow-light green loading"
                   onclick="play()">
+            <div class="loading-animation"></div>
             <h2>Play</h2>
+            <p id="offline">Offline</p>
           </button>
           <button id="quitbutton"
                   class="button box-glow-light red"
