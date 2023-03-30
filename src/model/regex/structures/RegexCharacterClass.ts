@@ -1,11 +1,11 @@
 class RegexCharacterClass extends RegexPartBase {
   chars: Set<string>
-  constructor(charSet: string) {
+  constructor(charSet: Set<string>) {
     super(charSet)
-    let amount = getRandomIntegerInRange(1, charSet.length)
+    let amount = getRandomIntegerInRange(1, charSet.size)
     this.chars = new Set()
     for (let i = 0; i < amount; i++) {
-      this.chars.add(getRandomElementFromArray(charSet.split("")))
+      this.chars.add(RegexGenerator.getRandomCharFromCharSet(this.charSet))
     }
   }
   generate(): string {
@@ -21,7 +21,7 @@ class RegexCharacterClass extends RegexPartBase {
       return this.generateCorrectAnswer()
     if (chance(0.05))
       return [...this.chars].join("")
-    const wrongChars = this.charSet.split("").filter(char => !this.chars.has(char))
+    const wrongChars = [...this.charSet].filter(char => !this.chars.has(char))
     if (wrongChars.length == 0)
       return this.generateCorrectAnswer()
     return getRandomElementFromArray(wrongChars)

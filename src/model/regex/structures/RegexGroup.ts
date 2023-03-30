@@ -3,7 +3,7 @@ class RegexGroup extends RegexPartWrapperBase {
   innerRegex: RegexPartBase
   quantifier?: RegexQuantifierBase
 
-  constructor(charSet: string, nesting: number, allowedRegexStructures: Set<RegexStructure>, complexity: number, quantifier?: RegexQuantifierBase) {
+  constructor(charSet: Set<string>, nesting: number, allowedRegexStructures: Set<RegexStructure>, complexity: number, quantifier?: RegexQuantifierBase) {
     super(charSet, nesting, allowedRegexStructures)
     this.quantifier = quantifier
     this.innerRegex = Regex.createRegexPart(charSet, nesting, allowedRegexStructures, complexity, this)

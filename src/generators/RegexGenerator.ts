@@ -7,24 +7,24 @@ class RegexGenerator {
   // maximum length for regexes of any complexity
   static maximumLength = 15
 
-  static charSets: string[] = [
-    "abc",
-    "xyz",
-    "vw",
-    "mnMN",
-    "dbpq",
-    "lIij",
-    "wtf",
-    "oOQCc",
-    //"1234567890",
+  static charSets: Set<string>[] = [
+    new Set(["a", "b", "c"]),
+    new Set(["x", "y", "z"]),
+    new Set(["v", "w"]),
+    new Set(["m", "n", "M", "N"]),
+    new Set(["d", "b", "p", "q"]),
+    new Set(["l", "I", "i", "j"]),
+    new Set(["w", "t", "f"]),
+    new Set(["o", "O", "Q", "C", "c"]),
+    //new Set(["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]),
   ]
 
-  static getRandomCharSet(): string {
-    return getRandomElementFromArray(this.charSets)
+  static getRandomCharSet(): Set<string> {
+    return getRandomElementFromArray([...this.charSets])
   }
 
-  static getRandomCharFromCharSet(charSet: string): string {
-    return getRandomElementFromArray(charSet.split(""))
+  static getRandomCharFromCharSet(charSet: Set<string>): string {
+    return getRandomElementFromArray([...charSet])
   }
 
   static getRandomRegexStructure(allowedRegexStructures: Set<RegexStructure>): RegexStructure {
@@ -42,7 +42,7 @@ class RegexGenerator {
     let regex = new Regex(charSet, allowedRegexStructures, complexity)
     console.log("generated regex", regex)
     // prevent regexes without any structures
-    if (regex.generate().split("").filter(token => !charSet.includes(token)).length == 0)
+    if (regex.generate().split("").filter(token => !charSet.has(token)).length == 0)
       return this.generateRegex(allowedRegexStructures, complexity)
     return regex
   }

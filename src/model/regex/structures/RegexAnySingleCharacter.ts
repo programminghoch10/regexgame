@@ -3,7 +3,7 @@ class RegexAnySingleCharacter extends RegexPartBase {
     return "."
   }
   generateCorrectAnswer(): string {
-    return getRandomElementFromArray(this.charSet.split(""))
+    return RegexGenerator.getRandomCharFromCharSet(this.charSet)
   }
   generatePossiblyWrongAnswer(lengthFactor: number, wrongChance: number): string {
     // there really is no wrong answer

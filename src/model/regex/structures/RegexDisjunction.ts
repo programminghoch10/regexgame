@@ -1,5 +1,5 @@
 class RegexDisjunction extends RegexSequence {
-  constructor(charSet: string, nesting: number, allowedRegexStructures: Set<RegexStructure>, complexity: number) {
+  constructor(charSet: Set<string>, nesting: number, allowedRegexStructures: Set<RegexStructure>, complexity: number) {
     super(charSet, nesting, allowedRegexStructures, complexity, false)
   }
   generate(): string {

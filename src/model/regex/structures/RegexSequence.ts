@@ -2,7 +2,7 @@ class RegexSequence extends RegexPartWrapperBase {
 
   sequence: Array<RegexPartBase>
 
-  constructor(charSet: string, nesting: number, allowedRegexStructures: Set<RegexStructure>, complexity: number, maximumLength?: boolean) {
+  constructor(charSet: Set<string>, nesting: number, allowedRegexStructures: Set<RegexStructure>, complexity: number, maximumLength?: boolean) {
     super(charSet, nesting, allowedRegexStructures)
     if (maximumLength == undefined) maximumLength = false
     let splitCount = RegexComplexity.calculateSequenceSplitCount(complexity)

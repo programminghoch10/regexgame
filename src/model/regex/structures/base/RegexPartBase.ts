@@ -4,9 +4,9 @@
 abstract class RegexPartBase {
   regexStructure?: RegexStructure
 
-  charSet: string
+  charSet: Set<string>
 
-  constructor(charSet: string) {
+  constructor(charSet: Set<string>) {
     this.charSet = charSet
   }
 

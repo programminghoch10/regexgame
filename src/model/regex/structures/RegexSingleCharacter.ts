@@ -1,9 +1,9 @@
 class RegexSingleCharacter extends RegexPartBase {
-  character: string;
+  character: string
 
-  constructor(charSet: string) {
+  constructor(charSet: Set<string>) {
     super(charSet)
-    this.character = getRandomElementFromArray(charSet.split(""))
+    this.character = RegexGenerator.getRandomCharFromCharSet(this.charSet)
   }
 
   generate(): string {
@@ -16,6 +16,6 @@ class RegexSingleCharacter extends RegexPartBase {
 
   generatePossiblyWrongAnswer(lengthFactor: number, wrongChance: number): string {
     if (!chance(wrongChance)) return this.generateCorrectAnswer()
-    return getRandomElementFromArray(this.charSet.split("").filter(char => this.character !== char))
+    return getRandomElementFromArray([...this.charSet].filter(char => this.character !== char))
   }
 }

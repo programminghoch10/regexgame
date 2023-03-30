@@ -1,7 +1,7 @@
 class Regex {
   private regex: RegexPartBase
   private complexity: number
-  constructor(charSet: string, allowedRegexStructures: Set<RegexStructure>, complexity: number) {
+  constructor(charSet: Set<string>, allowedRegexStructures: Set<RegexStructure>, complexity: number) {
     this.regex = new RegexSequence(charSet, 0, allowedRegexStructures, complexity, true)
     this.complexity = complexity
   }
@@ -35,7 +35,7 @@ class Regex {
   }
 
   static createRegexPart(
-    charSet: string,
+    charSet: Set<string>,
     nesting: number,
     allowedRegexStructures: Set<RegexStructure>,
     complexity: number,
