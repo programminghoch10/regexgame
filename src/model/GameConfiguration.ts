@@ -18,7 +18,7 @@ class GameConfiguration {
     const parsedJSON = JSON.parse(json)
     if (!parsedJSON.id) throw "missing id"
     if (!parsedJSON.allowedRegexStructures) throw "missing allowed regex structures"
-    if (!(parsedJSON.allowedRegexStructures instanceof Array)) throw "regex structures invali"
+    if (!(parsedJSON.allowedRegexStructures instanceof Array)) throw "regex structures invalid. Expected array but got " + parsedJSON.allowedRegexStructures
     let allowedRegexStructures = new Set<RegexStructure>();
     (parsedJSON.allowedRegexStructures as Array<string>).forEach(regexStructureString => {
       allowedRegexStructures.add(getRegexStructureFromString(regexStructureString))
