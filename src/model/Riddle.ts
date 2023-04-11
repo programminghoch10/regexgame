@@ -1,21 +1,21 @@
 
-// when this riddle is considered solved
-enum SOLVE_TYPE {
-  SOLVED_ON_MATCH, //solved if answer matches
-  SOLVED_ON_MISMATCH, //solved if answer does not match
+// defines what answer the user is supposed to click
+enum RIDDLE_TYPE {
+  FIND_MATCHING, // the user should find any correct regex
+  FIND_NON_MATCHING, // the user should find any incorrect regex
 }
 
 /**
  * This determines if a riddle is considered solved
  * @param answerMatches whether the answer matches the riddle's regex
- * @param solveType the solveType of the riddle
+ * @param riddleType the riddleType of the riddle
  * @returns whether this riddle has been solved
  */
-function isRiddleSolved(answerMatches: boolean, solveType: SOLVE_TYPE) {
-  switch (solveType) {
-    case SOLVE_TYPE.SOLVED_ON_MATCH:
+function isRiddleSolved(answerMatches: boolean, riddleType: RIDDLE_TYPE) {
+  switch (riddleType) {
+    case RIDDLE_TYPE.FIND_MATCHING:
       return answerMatches
-    case SOLVE_TYPE.SOLVED_ON_MISMATCH:
+    case RIDDLE_TYPE.FIND_NON_MATCHING:
       return !answerMatches
   }
 }
@@ -24,7 +24,7 @@ class Riddle {
   regex: Regex
   answers: Array<string>
 
-  solveType: SOLVE_TYPE = SOLVE_TYPE.SOLVED_ON_MATCH
+  riddleType: RIDDLE_TYPE = RIDDLE_TYPE.FIND_MATCHING
 
   constructor(regex: Regex, answers: Array<string>) {
     this.regex = regex
