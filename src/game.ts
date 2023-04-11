@@ -79,7 +79,7 @@ function onAnswerSelected(button: HTMLButtonElement, answer: string) {
   }
   const riddleRegex: RegExp = currentRiddle.regex.generateRegExp()
   const answerMatchesRiddle: boolean = riddleRegex.test(answer)
-  const correctAnswer = answerMatchesRiddle == currentRiddle.solvedOnMatch
+  const correctAnswer = isRiddleSolved(answerMatchesRiddle, currentRiddle.solveType)
   button.classList.add(correctAnswer ? "correct" : "incorrect")
   button.classList.add("selected")
   nextAnswerTimeout = setTimeout(() => {
