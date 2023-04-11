@@ -11,8 +11,8 @@ function getRandomInteger(maximum: number) {
   return Math.round(getRandomNumber() * maximum)
 }
 
-// return a random integer between and including minimum and maximum
-function getRandomIntegerFromRange(minimum: number, maximum: number) {
+/** Get a random integer between and including minimum and maximum */
+function getRandomIntegerInRange(minimum: number, maximum: number) {
   if (isNaN(minimum) || isNaN(maximum)) throw "invalid range"
   minimum = Math.round(minimum)
   maximum = Math.round(maximum)
@@ -25,7 +25,7 @@ function shuffleArray<T>(array: Array<T>): Array<T> {
   let newArray = new Array(...array)
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(getRandomNumber() * (i + 1));
-    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]]
   }
   return newArray
 }

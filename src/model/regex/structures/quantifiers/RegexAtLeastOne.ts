@@ -1,7 +1,7 @@
 class RegexAtLeastOne extends RegexQuantifierBase {
   quantifierSymbol: string = "+"
   generateCorrectQuantification(lengthFactor: number): number {
-    return getRandomIntegerFromRange(1, lengthFactor)
+    return getRandomIntegerInRange(1, lengthFactor)
   }
   generateWrongQuantification(lengthFactor: number): number {
     // zero is the only wrong quantification

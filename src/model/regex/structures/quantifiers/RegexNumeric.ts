@@ -16,11 +16,11 @@ class RegexNumeric extends RegexQuantifierBase {
   constructor() {
     super()
     if (chance(0.75)) {
-      this.absolute = getRandomIntegerFromRange(0, ABSOLUTE_MAXIMUM)
+      this.absolute = getRandomIntegerInRange(0, ABSOLUTE_MAXIMUM)
     } else {
-      this.absoluteMinimum = getRandomIntegerFromRange(0, ABSOLUTE_MAXIMUM)
+      this.absoluteMinimum = getRandomIntegerInRange(0, ABSOLUTE_MAXIMUM)
       if (chance(0.75)) {
-        this.absoluteMaximum = getRandomIntegerFromRange(this.absoluteMinimum, ABSOLUTE_MAXIMUM)
+        this.absoluteMaximum = getRandomIntegerInRange(this.absoluteMinimum, ABSOLUTE_MAXIMUM)
       }
       if (this.absoluteMinimum === this.absoluteMaximum && chance(0.95)) {
         this.absolute = this.absoluteMinimum
@@ -33,17 +33,17 @@ class RegexNumeric extends RegexQuantifierBase {
       return this.absolute
     lengthFactor = Math.max(lengthFactor, this.absoluteMinimum!)
     if (this.absoluteMaximum == undefined)
-      return getRandomIntegerFromRange(this.absoluteMinimum!, lengthFactor)
-    return getRandomIntegerFromRange(this.absoluteMinimum!, this.absoluteMaximum!)
+      return getRandomIntegerInRange(this.absoluteMinimum!, lengthFactor)
+    return getRandomIntegerInRange(this.absoluteMinimum!, this.absoluteMaximum!)
   }
   generateWrongQuantification(lengthFactor: number): number {
     if (this.absolute != undefined)
-      return this.absolute + getRandomIntegerFromRange(Math.max(-lengthFactor, 0), lengthFactor)
+      return this.absolute + getRandomIntegerInRange(Math.max(-lengthFactor, 0), lengthFactor)
     if (this.absoluteMaximum == undefined)
-      return getRandomIntegerFromRange(Math.max(0, this.absoluteMinimum! - lengthFactor), this.absoluteMinimum!)
+      return getRandomIntegerInRange(Math.max(0, this.absoluteMinimum! - lengthFactor), this.absoluteMinimum!)
     if (chance(0.5))
-      return getRandomIntegerFromRange(Math.max(0, this.absoluteMinimum! - lengthFactor), this.absoluteMinimum!)
+      return getRandomIntegerInRange(Math.max(0, this.absoluteMinimum! - lengthFactor), this.absoluteMinimum!)
     else
-      return getRandomIntegerFromRange(this.absoluteMaximum, this.absoluteMaximum + lengthFactor)
+      return getRandomIntegerInRange(this.absoluteMaximum, this.absoluteMaximum + lengthFactor)
   }
 }

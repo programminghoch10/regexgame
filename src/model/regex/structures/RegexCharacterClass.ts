@@ -2,7 +2,7 @@ class RegexCharacterClass extends RegexPartBase {
   chars: Set<string>
   constructor(charSet: string) {
     super(charSet)
-    let amount = getRandomIntegerFromRange(1, charSet.length)
+    let amount = getRandomIntegerInRange(1, charSet.length)
     this.chars = new Set()
     for (let i = 0; i < amount; i++) {
       this.chars.add(getRandomElementFromArray(charSet.split("")))

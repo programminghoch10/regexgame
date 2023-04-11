@@ -1,7 +1,7 @@
 class RegexAnyAmount extends RegexQuantifierBase {
   quantifierSymbol: string = "*"
   generateCorrectQuantification(lengthFactor: number): number {
-    return getRandomIntegerFromRange(0, lengthFactor)
+    return getRandomIntegerInRange(0, lengthFactor)
   }
   generateWrongQuantification(lengthFactor: number): number {
     // there is no false quantification possible
