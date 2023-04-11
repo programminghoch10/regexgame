@@ -38,7 +38,7 @@ class RegexNumeric extends RegexQuantifierBase {
   }
   generateWrongQuantification(lengthFactor: number): number {
     if (this.absolute != undefined)
-      return this.absolute + getRandomIntegerInRange(Math.max(-lengthFactor, 0), lengthFactor)
+      return Math.max(0, this.absolute + (chance(0.5) ? 1 : -1) * getRandomIntegerInRange(0, lengthFactor))
     if (this.absoluteMaximum == undefined)
       return getRandomIntegerInRange(Math.max(0, this.absoluteMinimum! - lengthFactor), this.absoluteMinimum!)
     if (chance(0.5))
