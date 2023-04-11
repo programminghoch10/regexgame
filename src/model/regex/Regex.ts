@@ -29,7 +29,7 @@ class Regex {
     const answer = this.regex.generatePossiblyWrongAnswer(lengthFactor, wrongChance)
     if (!this.generateRegExp().test(answer))
       return answer
-    // if the generated answer is correct, increase the wrong chance and try again
+    // if the generated answer is accidentally correct, increase the wrong chance by 5% and try again
     wrongChance += Math.min(1 - wrongChance, 0.05)
     return this.generateWrongAnswer(lengthFactor, wrongChance)
   }

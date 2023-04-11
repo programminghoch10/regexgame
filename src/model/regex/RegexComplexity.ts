@@ -1,9 +1,9 @@
 
 /**
  * static probability maps
- * these list the probability of every structures occurence during generation
+ * these maps list the probability of occurrence for every structure during the generation
  * the entries dont have to add up to 1, they will be normalized before they are used
- * this only defines relative probabilities to each other, so 2 will be double as likely as 1
+ * this only defines relative probabilities to each other, so 2 will be twice as likely as 1
  */
 
 const REGEX_PROBABILITY_QUANTIFIER = new Map<RegexStructure | undefined, number>([
@@ -85,11 +85,11 @@ class RegexComplexity {
    */
   private static convertToCumulativeProbabilities<T>(weightedRandomMap: Map<T, number>): Map<T, number> {
     const result = new Map(weightedRandomMap);
-    [...weightedRandomMap.entries()].map((value, index, array) => {
+    [...weightedRandomMap.entries()].map((entry, index, array) => {
       // calculate cumulative probabilites
       const previousProbability = index == 0 ? 0 : array[index - 1][1]
-      value[1] = value[1] + previousProbability
-      return value
+      entry[1] = entry[1] + previousProbability
+      return entry
     }).forEach(entry => result.set(entry[0], entry[1]))
     return result
   }
@@ -107,7 +107,7 @@ class RegexComplexity {
   ): Map<T | undefined, number> {
     const result = new Map(weightedRandomMap);
     [...weightedRandomMap.keys()]
-      .filter(key => key == undefined ? false : !allowedKeys.has(key))
+      .filter(key => key != undefined && !allowedKeys.has(key))
       .forEach(key => result.delete(key))
     return result
   }
@@ -163,7 +163,7 @@ class RegexComplexity {
     // normalize the complexity using log to dampen its effect
     const normalizedComplexity = Math.log(complexity * 0.5)
     if (isNaN(normalizedComplexity) || normalizedComplexity < 0) return 0
-    // the nearer normalizedComplexity is to zero, the more complexityMapValue is to 1
+    // the nearer normalizedComplexity is to zero, the closer complexityMapValue is to 1
     // this will make the complexityMapValue more effective the higher the complexity is
     const normalizedComplexityMapValue = Math.pow(complexityMapValue, normalizedComplexity)
     return normalizedComplexityMapValue

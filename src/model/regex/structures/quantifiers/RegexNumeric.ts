@@ -27,8 +27,7 @@ class RegexNumeric extends RegexQuantifierBase {
   generateCorrectQuantification(lengthFactor: number): number {
     if (this.absolute != undefined)
       return this.absolute
-    if (lengthFactor < this.absoluteMinimum!)
-      lengthFactor = this.absoluteMinimum!
+    lengthFactor = Math.max(lengthFactor, this.absoluteMinimum!)
     if (this.absoluteMaximum == undefined)
       return getRandomIntegerFromRange(this.absoluteMinimum!, lengthFactor)
     return getRandomIntegerFromRange(this.absoluteMinimum!, this.absoluteMaximum!)
