@@ -1,3 +1,7 @@
+
+// the maximum value an numeric quantifier may have
+const ABSOLUTE_MAXIMUM = 9
+
 class RegexNumeric extends RegexQuantifierBase {
   absoluteMinimum?: number
   absoluteMaximum?: number
@@ -12,11 +16,11 @@ class RegexNumeric extends RegexQuantifierBase {
   constructor() {
     super()
     if (chance(0.75)) {
-      this.absolute = getRandomIntegerFromRange(0, 9)
+      this.absolute = getRandomIntegerFromRange(0, ABSOLUTE_MAXIMUM)
     } else {
-      this.absoluteMinimum = getRandomIntegerFromRange(0, 9)
+      this.absoluteMinimum = getRandomIntegerFromRange(0, ABSOLUTE_MAXIMUM)
       if (chance(0.75)) {
-        this.absoluteMaximum = getRandomIntegerFromRange(this.absoluteMinimum, 9)
+        this.absoluteMaximum = getRandomIntegerFromRange(this.absoluteMinimum, ABSOLUTE_MAXIMUM)
       }
       if (this.absoluteMinimum === this.absoluteMaximum && chance(0.95)) {
         this.absolute = this.absoluteMinimum
