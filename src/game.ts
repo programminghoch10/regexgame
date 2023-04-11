@@ -1,17 +1,4 @@
 
-class Riddle {
-  regex: RegExp
-  answers: Array<string>
-
-  // whether this riddle is solved correctly if the regex matched
-  solvedOnMatch: boolean = true
-
-  constructor(regex: RegExp, answers: Array<string>) {
-    this.regex = regex
-    this.answers = answers
-  }
-}
-
 /**
  * Generates an answer button.
  * @param answer the answer
@@ -25,8 +12,8 @@ function generateAnswerButton(answer: string): HTMLButtonElement {
   return button
 }
 
-const riddleDivP = document.querySelector("#riddle > p")! as HTMLParagraphElement
-const answersDiv = document.querySelector("#answers")! as HTMLDivElement
+const riddleRegexElement = document.querySelector("#riddle > p")! as HTMLParagraphElement
+const answersContainer = document.querySelector("#answers")! as HTMLDivElement
 
 /**
  * The current Riddle displayed to the user.
@@ -34,35 +21,71 @@ const answersDiv = document.querySelector("#answers")! as HTMLDivElement
 var currentRiddle: Riddle | undefined
 
 /**
+ * the current round
+ */
+var round: number
+
+/**
  * Display a riddle to the user
  * @param riddle the riddle to display
  */
 async function displayRiddle(riddle: Riddle) {
   await gameBoxHeightTransitionBegin()
-  setHidden(startPageDiv, true)
-  setHidden(gameDiv, false)
+  setHidden(startPageContainer, true)
+  setHidden(gameContainer, false)
   removeCurrentRiddle()
   currentRiddle = riddle
-  riddleDivP.innerText = riddle.regex.source
+  riddleRegexElement.innerText = riddle.regex.generate()
   riddle.answers.forEach(answer =>
-    answersDiv.appendChild(generateAnswerButton(answer))
+    answersContainer.appendChild(generateAnswerButton(answer))
   )
   await gameBoxHeightTransitionEnd()
 }
 
+function nextRiddle() {
+  round++
+  try {
+    displayRiddle(generateRiddle(round))
+  } catch (e) {
+    console.error("error creating next riddle", e)
+    //TODO: notify user?
+    gameEnd()
+  }
+}
+
+function gameEnd() {
+  displayScore()
+  switchToStartPage()
+}
+
 function removeCurrentRiddle() {
-  riddleDivP.innerText = ""
-  answersDiv.innerHTML = ""
+  riddleRegexElement.innerText = ""
+  answersContainer.innerHTML = ""
   currentRiddle = undefined
 }
 
+let nextAnswerTimeout: number | undefined
 function onAnswerSelected(button: HTMLButtonElement, answer: string) {
   if (!currentRiddle) throw "current riddle undefined"
-  if (answersDiv.querySelector("button.selected")) throw "answer already selected"
-  const riddleRegex: RegExp = new RegExp(`^${currentRiddle.regex.source}$`)
+  if (answersContainer.querySelector("button.selected")) {
+    let correctAnswer = answersContainer.querySelector("button.selected.correct") != undefined
+    if (correctAnswer && nextAnswerTimeout !== undefined) {
+      clearTimeout(nextAnswerTimeout)
+      nextAnswerTimeout = undefined
+    }
+    if (correctAnswer)
+      nextRiddle()
+    return
+  }
+  const riddleRegex: RegExp = currentRiddle.regex.generateRegExp()
   const answerMatchesRiddle: boolean = riddleRegex.test(answer)
-  const correctAnswer = answerMatchesRiddle == currentRiddle.solvedOnMatch
+  const correctAnswer = isRiddleSolved(answerMatchesRiddle, currentRiddle.riddleType)
   button.classList.add(correctAnswer ? "correct" : "incorrect")
   button.classList.add("selected")
-  setTimeout(() => switchToStartPage(), 3000)
+  nextAnswerTimeout = setTimeout(() => {
+    if (correctAnswer)
+      nextRiddle()
+    else
+      gameEnd()
+  }, correctAnswer ? 1000 : 5000)
 }

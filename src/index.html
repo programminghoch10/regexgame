@@ -9,12 +9,34 @@
     <link rel="stylesheet" href="startpage.css">
     <link rel="stylesheet" href="game.css">
     <link rel="stylesheet" href="glow.css">
-    <script src="model/RegexStructure.js"></script>
-    <script src="model/GameConfiguration.js"></script>
-    <script src="api.js"></script>
-    <script src="game.js" async defer></script>
-    <script src="startpage.js" async defer></script>
-    <script src="gameboxtransition.js" async defer></script>
+    <script src="utils.js" defer></script>
+    <script src="api.js" defer></script>
+    <script src="model/RegexStructure.js" defer></script>
+    <script src="model/regex/Regex.js" defer></script>
+    <script src="model/regex/RegexComplexity.js" defer></script>
+    <script src="model/regex/structures/base/RegexPartBase.js" defer></script>
+    <script src="model/regex/structures/base/RegexPartWrapperBase.js" defer></script>
+    <script src="model/regex/structures/base/RegexQuantifierBase.js" defer></script>
+    <script src="model/regex/structures/RegexSequence.js" defer></script>
+    <script src="model/regex/structures/RegexSingleCharacterSequence.js" defer></script>
+    <script src="model/regex/structures/RegexSingleCharacter.js" defer></script>
+    <script src="model/regex/structures/RegexAnySingleCharacter.js" defer></script>
+    <script src="model/regex/structures/RegexCharacterClass.js" defer></script>
+    <script src="model/regex/structures/RegexCharacterClassInverted.js" defer></script>
+    <script src="model/regex/structures/RegexDisjunction.js" defer></script>
+    <script src="model/regex/structures/quantifiers/RegexNumeric.js" defer></script>
+    <script src="model/regex/structures/quantifiers/RegexOptional.js" defer></script>
+    <script src="model/regex/structures/quantifiers/RegexAtLeastOne.js" defer></script>
+    <script src="model/regex/structures/quantifiers/RegexAnyAmount.js" defer></script>
+    <script src="model/regex/structures/RegexGroup.js" defer></script>
+    <script src="model/Riddle.js" defer></script>
+    <script src="model/GameConfiguration.js" defer></script>
+    <script src="gameboxtransition.js" defer></script>
+    <script src="startpage.js" defer></script>
+    <script src="generators/RegexGenerator.js" defer></script>
+    <script src="generators/RegexAnswerGenerator.js" defer></script>
+    <script src="generators/riddlegenerator.js" defer></script>
+    <script src="game.js" defer></script>
     <title>RegexGame</title>
   </head>
 
@@ -22,6 +44,7 @@
     <div class="box-glow game-box">
       <div id="startpage" class="content-box">
         <h1>RegexGame</h1>
+        <h2 id="score">Score: </h2>
         <div id="buttons">
           <button id="playbutton"
                   class="button box-glow-light green loading"
@@ -29,6 +52,7 @@
             <div class="loading-animation"></div>
             <h2>Play</h2>
             <p id="offline">Offline</p>
+            <p id="again">Again</p>
           </button>
           <button id="quitbutton"
                   class="button box-glow-light red"

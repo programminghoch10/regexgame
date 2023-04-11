@@ -6,24 +6,37 @@ function sleep(ms: number): Promise<void> {
 function quit() {
   window.parent.postMessage("CLOSE ME", "*")
   window.close()
+  round = 0
+  displayScore()
 }
-
-const exampleRiddle: Riddle = new Riddle(/ab(ab)*/, ["aba", "abb", "ababa", "abab"])
 
 const playButton = document.querySelector("#playbutton")! as HTMLButtonElement
 function play() {
   if (playButton.classList.contains("loading")) throw "still loading, cant play"
-  displayRiddle(exampleRiddle)
+  round = -1
+  nextRiddle()
 }
 
-const gameBoxDiv = document.querySelector("body > div.game-box")! as HTMLDivElement
-const startPageDiv = document.querySelector("#startpage")! as HTMLDivElement
-const gameDiv = document.querySelector("#game")! as HTMLDivElement
+const globalContainer = document.querySelector("body > div.game-box")! as HTMLDivElement
+const startPageContainer = document.querySelector("#startpage")! as HTMLDivElement
+const gameContainer = document.querySelector("#game")! as HTMLDivElement
 async function switchToStartPage() {
   await gameBoxHeightTransitionBegin()
-  setHidden(startPageDiv, false)
-  setHidden(gameDiv, true)
+  setHidden(startPageContainer, false)
+  setHidden(gameContainer, true)
   await gameBoxHeightTransitionEnd()
+}
+
+const scoreElement = document.querySelector("#startpage > h2#score")! as HTMLHeadingElement
+function displayScore() {
+  if (round == undefined || round <= 0) {
+    startPageContainer.classList.remove("finished")
+    playButton.classList.remove("again")
+    return
+  }
+  scoreElement.innerText = `Score: ${round}`
+  startPageContainer.classList.add("finished")
+  playButton.classList.add("again")
 }
 
 async function load() {

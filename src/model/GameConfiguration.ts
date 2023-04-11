@@ -3,7 +3,7 @@ class GameConfiguration {
 
   allowedRegexStructures: Set<RegexStructure>
 
-  complexity: number = 1
+  complexity: number = 5
 
   increaseComplexity: boolean = true
 

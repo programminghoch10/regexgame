@@ -1,8 +1,9 @@
 body {
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   width: 100vw;
   padding: 2rem;
-  padding-block: 5rem;
+  padding-block: 2rem;
   margin: 0;
   box-sizing: border-box;
   background-color: black;
@@ -13,6 +14,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5em;
+  overflow-x: hidden;
 }
 
 body div.content-box {
@@ -46,6 +48,9 @@ button {
 
 p, h1, h2, h3, h4, h5, h6 {
   margin: 0;
+  font-family: auto;
+  white-space: normal;
+  word-break: break-all;
 }
 
 h1 {
