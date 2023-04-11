@@ -12,8 +12,8 @@ function generateAnswerButton(answer: string): HTMLButtonElement {
   return button
 }
 
-const riddleDivP = document.querySelector("#riddle > p")! as HTMLParagraphElement
-const answersDiv = document.querySelector("#answers")! as HTMLDivElement
+const riddleRegexElement = document.querySelector("#riddle > p")! as HTMLParagraphElement
+const answersContainer = document.querySelector("#answers")! as HTMLDivElement
 
 /**
  * The current Riddle displayed to the user.
@@ -31,13 +31,13 @@ var round: number
  */
 async function displayRiddle(riddle: Riddle) {
   await gameBoxHeightTransitionBegin()
-  setHidden(startPageDiv, true)
-  setHidden(gameDiv, false)
+  setHidden(startPageContainer, true)
+  setHidden(gameContainer, false)
   removeCurrentRiddle()
   currentRiddle = riddle
-  riddleDivP.innerText = riddle.regex.generate()
+  riddleRegexElement.innerText = riddle.regex.generate()
   riddle.answers.forEach(answer =>
-    answersDiv.appendChild(generateAnswerButton(answer))
+    answersContainer.appendChild(generateAnswerButton(answer))
   )
   await gameBoxHeightTransitionEnd()
 }
@@ -59,16 +59,16 @@ function gameEnd() {
 }
 
 function removeCurrentRiddle() {
-  riddleDivP.innerText = ""
-  answersDiv.innerHTML = ""
+  riddleRegexElement.innerText = ""
+  answersContainer.innerHTML = ""
   currentRiddle = undefined
 }
 
 let nextAnswerTimeout: number | undefined
 function onAnswerSelected(button: HTMLButtonElement, answer: string) {
   if (!currentRiddle) throw "current riddle undefined"
-  if (answersDiv.querySelector("button.selected")) {
-    let correctAnswer = answersDiv.querySelector("button.selected.correct") != undefined
+  if (answersContainer.querySelector("button.selected")) {
+    let correctAnswer = answersContainer.querySelector("button.selected.correct") != undefined
     if (correctAnswer && nextAnswerTimeout !== undefined) {
       clearTimeout(nextAnswerTimeout)
       nextAnswerTimeout = undefined

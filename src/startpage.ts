@@ -17,25 +17,25 @@ function play() {
   nextRiddle()
 }
 
-const gameBoxDiv = document.querySelector("body > div.game-box")! as HTMLDivElement
-const startPageDiv = document.querySelector("#startpage")! as HTMLDivElement
-const gameDiv = document.querySelector("#game")! as HTMLDivElement
+const globalContainer = document.querySelector("body > div.game-box")! as HTMLDivElement
+const startPageContainer = document.querySelector("#startpage")! as HTMLDivElement
+const gameContainer = document.querySelector("#game")! as HTMLDivElement
 async function switchToStartPage() {
   await gameBoxHeightTransitionBegin()
-  setHidden(startPageDiv, false)
-  setHidden(gameDiv, true)
+  setHidden(startPageContainer, false)
+  setHidden(gameContainer, true)
   await gameBoxHeightTransitionEnd()
 }
 
-const scoreH = document.querySelector("#startpage > h2#score")! as HTMLHeadingElement
+const scoreElement = document.querySelector("#startpage > h2#score")! as HTMLHeadingElement
 function displayScore() {
   if (round == undefined || round <= 0) {
-    startPageDiv.classList.remove("finished")
+    startPageContainer.classList.remove("finished")
     playButton.classList.remove("again")
     return
   }
-  scoreH.innerText = `Score: ${round}`
-  startPageDiv.classList.add("finished")
+  scoreElement.innerText = `Score: ${round}`
+  startPageContainer.classList.add("finished")
   playButton.classList.add("again")
 }
 
