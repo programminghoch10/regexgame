@@ -1,8 +1,8 @@
 class RegexCharacterClassInverted extends RegexCharacterClass {
   constructor(charSet: Set<string>) {
     super(charSet)
-    // if (charSet.size == this.chars.size)
-    //   this.chars.delete(RegexGenerator.getRandomCharFromCharSet(this.charSet))
+    if (charSet.size == this.chars.size)
+      this.chars.delete(RegexGenerator.getRandomCharFromCharSet(this.charSet))
   }
   generate(): string {
     if (this.chars.size == 0) return ""
