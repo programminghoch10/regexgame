@@ -55,25 +55,25 @@ const REGEX_COMPLEXITY_STRUCTURE = new Map<RegexStructure, number>([
 class RegexComplexity {
 
   /**
-   * This neutralizes a map with uneven probabilities.
+   * This normalizes a map with uneven probabilities.
    * For example, it would convert two 0.7 probabilites to 0.5 each.
    * During this process the ratios are kept in tact,
    * so 0.4 and 0.8 are converted to 0.33 and 0.66 accordingly.
    * @param weightedRandomMap an unevenly weighted probablity map
    * @returns a correctly weighted probability map
    */
-  private static neutralizeProbabilities<T>(weightedRandomMap: Map<T, number>): Map<T, number> {
+  private static normalizeProbabilities<T>(weightedRandomMap: Map<T, number>): Map<T, number> {
     const probabilitySum = [...weightedRandomMap.values()].reduce((a, b) => a + b)
     if (probabilitySum == 0) {
       // if the sum is 0 we have to reset all contained probabilites to 1 in order for the calculation to work
-      return this.neutralizeProbabilities(new Map(
+      return this.normalizeProbabilities(new Map(
         [...weightedRandomMap.entries()].map(entry => { entry[1] = 1; return entry })
       ))
     }
-    const neutralizeFactor = 1 / probabilitySum
+    const normalizeFactor = 1 / probabilitySum
     const result = new Map(weightedRandomMap)
     weightedRandomMap.forEach((value, key) => {
-      result.set(key, value * neutralizeFactor)
+      result.set(key, value * normalizeFactor)
     })
     return result
   }
@@ -118,8 +118,8 @@ class RegexComplexity {
    * @returns key from a random element in the map
    */
   private static getRandomKeyOfWeightedMap<T>(weightedRandomMap: Map<T, number>): T {
-    const neutralizedRandomMap = this.neutralizeProbabilities(weightedRandomMap)
-    const cumulativeRandomMap = this.convertToCumulativeProbabilities(neutralizedRandomMap)
+    const normalizedRandomMap = this.normalizeProbabilities(weightedRandomMap)
+    const cumulativeRandomMap = this.convertToCumulativeProbabilities(normalizedRandomMap)
     const random = getRandomNumber()
     // get the first element where the cumulative probability is greater than random
     return [...cumulativeRandomMap.entries()]
