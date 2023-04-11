@@ -117,7 +117,7 @@ class RegexComplexity {
    * @param weightedRandomMap a weighted probability map
    * @returns key from a random element in the map
    */
-  private static retrieveWeightedRandomResultKey<T>(weightedRandomMap: Map<T, number>): T {
+  private static getRandomKeyOfWeightedMap<T>(weightedRandomMap: Map<T, number>): T {
     const neutralizedRandomMap = this.neutralizeProbabilities(weightedRandomMap)
     const cumulativeRandomMap = this.convertToCumulativeProbabilities(neutralizedRandomMap)
     const random = getRandomNumber()
@@ -142,7 +142,7 @@ class RegexComplexity {
     complexityMap?: Map<RegexStructure | undefined, number>,
     complexity?: number
   ): RegexStructure | undefined {
-    return this.retrieveWeightedRandomResultKey(
+    return this.getRandomKeyOfWeightedMap(
       this.applyComplexityFactor(
         this.filterKeys(weightedRandomMap, allowedRegexStructures),
         complexityMap ?? new Map<RegexStructure | undefined, number>(),
