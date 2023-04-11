@@ -15,7 +15,7 @@ const REGEX_PROBABILITY_QUANTIFIER = new Map<RegexStructure | undefined, number>
 ])
 
 const REGEX_PROBABILITY_STRUCTURE = new Map<RegexStructure, number>([
-  [RegexStructure.SINGLE_CHARACTER, 0],
+  [RegexStructure.SINGLE_CHARACTER, 0], //included in character sequences
   [RegexStructure.CHARACTER_SEQUENCE, 1],
   [RegexStructure.ANY_SINGLE_CHARACTER, 0.7],
   [RegexStructure.GROUP, 0.5],
@@ -208,6 +208,8 @@ class RegexComplexity {
       complexity
     )!
   }
+
+// game balancing functions
 
   /**
    * calculate the complexity factor for this round

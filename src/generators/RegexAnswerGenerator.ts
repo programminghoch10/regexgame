@@ -18,6 +18,6 @@ function generateRegexAnswers(regex: Regex, answerCount: number, correctAnswerRa
     answers.push(regex.generateWrongAnswer())
   answers = removeDuplicatesFromArray(answers)
   answers = shuffleArray(answers)
-  answers = answers.map(answer => answer.length == 0 ? "&nbsp;" : answer)
+  answers = answers.map(answer => answer.length == 0 ? "&nbsp;" : answer) //replace empty string with non-breakable space to ensure correct button sizing with empty answers
   return answers
 }
