@@ -39,9 +39,17 @@ async function displayRiddle(riddle: Riddle) {
   riddle.answers.forEach(answer =>
     answersContainer.appendChild(generateAnswerButton(answer))
   )
+  const progress = clamp(round / (gameConfigurationBySearchQuery ?? defaultConfiguration).minimumCompletedRounds, 0, 1)
+  gameProgressBar.style.setProperty("--progress", progress * 100 + "%")
+  if (progress === 1) {
+    gameProgressBar.innerText = "Completed (free play)"
+  } else {
+    gameProgressBar.innerHTML = progress * 100 + "%"
+  }
   await gameBoxHeightTransitionEnd()
 }
 
+const gameProgressBar = (document.querySelector("#gameprogress") as HTMLDivElement)!
 function nextRiddle() {
   round++
   try {

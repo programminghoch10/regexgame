@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 #riddle > p {
@@ -52,4 +53,30 @@
 
 #game > .instruction {
   text-shadow: none;
+}
+
+.progressbar {
+  content: var(--progress);
+  text-align: center;
+  height: 1.2em;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 1em;
+  border: 1px white solid;
+  background-color: none;
+  position: relative;
+  /* position: absolute;
+  bottom: 0; */
+}
+
+.progressbar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  border-radius: 1em;
+  width: clamp(0%, var(--progress), 100%);
+  height: 100%;
+  background-color: green;
+  transition: width ease-in-out 5s;
 }
