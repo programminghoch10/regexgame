@@ -7,7 +7,9 @@
 function generateAnswerButton(answer: string): HTMLButtonElement {
   let button = document.createElement("button") as HTMLButtonElement
   button.classList.add("answer", "button", "box-glow-light")
-  button.innerHTML = `<p>${answer}</p>`
+  //replace empty string with non-breakable space to ensure correct button sizing with empty answers
+  const buttonText = answer.length == 0 ? "&nbsp;" : answer
+  button.innerHTML = `<p>${buttonText}</p>`
   button.addEventListener("click", () => onAnswerSelected(button, answer))
   return button
 }
@@ -78,6 +80,7 @@ function onAnswerSelected(button: HTMLButtonElement, answer: string) {
     return
   }
   const riddleRegex: RegExp = currentRiddle.regex.generateRegExp()
+  console.log("selected answer", riddleRegex, answer)
   const answerMatchesRiddle: boolean = riddleRegex.test(answer)
   const correctAnswer = isRiddleSolved(answerMatchesRiddle, currentRiddle.riddleType)
   button.classList.add(correctAnswer ? "correct" : "incorrect")
