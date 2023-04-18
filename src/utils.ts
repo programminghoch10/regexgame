@@ -1,22 +1,22 @@
 
 function getRandomElementFromArray<T>(array: Array<T>): T {
-  if (array.length == 0) throw "array is empty"
+  if (array.length == 0) throw new Error("array is empty")
   return array[getRandomInteger(array.length - 1)]
 }
 
 // return a random integer between and including zero and maximum
 function getRandomInteger(maximum: number) {
   maximum = Math.round(maximum)
-  if (maximum < 0) throw "invalid maximum number"
+  if (maximum < 0) throw new Error("invalid maximum number")
   return Math.round(getRandomNumber() * maximum)
 }
 
 /** Get a random integer between and including minimum and maximum */
 function getRandomIntegerInRange(minimum: number, maximum: number) {
-  if (isNaN(minimum) || isNaN(maximum)) throw "invalid range"
+  if (isNaN(minimum) || isNaN(maximum)) throw new Error("invalid range")
   minimum = Math.round(minimum)
   maximum = Math.round(maximum)
-  if (minimum > maximum) throw "invalid range"
+  if (minimum > maximum) throw new Error("invalid range")
   if (minimum == maximum) return minimum
   return minimum + getRandomInteger(maximum - minimum)
 }
@@ -31,7 +31,7 @@ function shuffleArray<T>(array: Array<T>): Array<T> {
 }
 
 function removeDuplicatesFromArray<T>(array: Array<T>): Array<T> {
-  return array.filter((value, index, array) => array.indexOf(value) == index)
+  return array.filter((value, index, innerArray) => innerArray.indexOf(value) == index)
 }
 
 function clamp(value: number, minimum: number, maximum: number): number {
@@ -43,7 +43,7 @@ function clamp(value: number, minimum: number, maximum: number): number {
  * @param probability how probable true should be
  */
 function chance(probability: number): boolean {
-  if (probability > 1 || probability < 0) throw "invalid chance range"
+  if (probability > 1 || probability < 0) throw new Error("invalid chance range")
   return getRandomNumber() < probability
 }
 

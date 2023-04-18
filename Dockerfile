@@ -1,4 +1,4 @@
-FROM node:17-alpine as builder
+FROM node:17-alpine AS builder
 
 WORKDIR /build
 
@@ -16,7 +16,7 @@ RUN npm run build
 # delete typescript source files
 RUN find -type f -name '*.ts' | xargs rm
 
-FROM nginx:alpine as production-build
+FROM nginx:alpine AS production-build
 COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
 
 # Remove default nginx index page

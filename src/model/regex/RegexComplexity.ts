@@ -125,7 +125,7 @@ class RegexComplexity {
     return [...cumulativeRandomMap.entries()]
       .filter(value => value[1] > random) //filter every value smaller than random
       .sort((a, b) => a[1] - b[1]) //sort by accending probability
-      .reduce((a, b) => a)[0] // get first element (smallest probability) key
+      .reduce((a) => a)[0] // get first element (smallest probability) key
   }
 
   /**
@@ -158,15 +158,14 @@ class RegexComplexity {
    * @returns a factor to be multiplied with the original probability
    */
   private static calulateComplexityFactorForComplexityMap(complexityMapValue: number, complexity: number): number {
-    if (complexity < 0) throw "invalid complexity " + complexity
+    if (complexity < 0) throw new Error("invalid complexity " + complexity)
     if (complexity == 0) return 1
     // normalize the complexity using log to dampen its effect
     const normalizedComplexity = Math.log(complexity * 0.5)
     if (isNaN(normalizedComplexity) || normalizedComplexity < 0) return 0
     // the nearer normalizedComplexity is to zero, the closer complexityMapValue is to 1
     // this will make the complexityMapValue more effective the higher the complexity is
-    const normalizedComplexityMapValue = Math.pow(complexityMapValue, normalizedComplexity)
-    return normalizedComplexityMapValue
+    return Math.pow(complexityMapValue, normalizedComplexity)
   }
 
   /**
@@ -244,7 +243,7 @@ class RegexComplexity {
     return Math.max(complexity - splitCount, 0)
   }
 
-  static calculateAnswerLengthFactor(complexity: number, regexLength: number): number {
+  static calculateAnswerLengthFactor(_complexity: number, regexLength: number): number {
     return regexLength
   }
 

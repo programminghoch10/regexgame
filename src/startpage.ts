@@ -12,7 +12,7 @@ function quit() {
 
 const playButton = document.querySelector("#playbutton")! as HTMLButtonElement
 function play() {
-  if (playButton.classList.contains("loading")) throw "still loading, cant play"
+  if (playButton.classList.contains("loading")) throw new Error("still loading, cant play")
   round = -1
   nextRiddle()
 }

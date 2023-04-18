@@ -16,7 +16,7 @@ class RegexCharacterClass extends RegexPartBase {
   generateCorrectAnswer(): string {
     return getRandomElementFromArray([...this.chars])
   }
-  generatePossiblyWrongAnswer(lengthFactor: number, wrongChance: number): string {
+  generatePossiblyWrongAnswer(_lengthFactor: number, wrongChance: number): string {
     if (chance(1 - wrongChance))
       return this.generateCorrectAnswer()
     if (chance(0.05))

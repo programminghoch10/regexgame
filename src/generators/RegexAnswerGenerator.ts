@@ -8,7 +8,7 @@
  */
 function generateRegexAnswers(regex: Regex, answerCount: number, correctAnswerRatio?: number): string[] {
   if (correctAnswerRatio == undefined) correctAnswerRatio = 0
-  if (answerCount < 1) throw "invalid answerCount " + answerCount
+  if (answerCount < 1) throw new Error("invalid answerCount " + answerCount)
   const correctAnswerCount = Math.max(Math.round(answerCount * correctAnswerRatio), 1)
   const incorrectAnswerCount = answerCount - correctAnswerCount
   let answers = []

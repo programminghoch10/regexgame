@@ -41,7 +41,7 @@ const REGEX_STRUCTURES: Set<RegexStructure> = new Set([
  * @returns the according RegexStructure enum
  */
 function getRegexStructureFromString(string: string): RegexStructure {
-  if (!Object.values(RegexStructure).includes(string)) throw "this regex structure doesnt exist"
+  if (!Object.values(RegexStructure).includes(string)) throw new Error("this regex structure doesnt exist")
   return Object.entries(RegexStructure).find(entry => entry[0] === string)![1] as RegexStructure
 }
 

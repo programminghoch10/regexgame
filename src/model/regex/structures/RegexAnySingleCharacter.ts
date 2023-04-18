@@ -5,7 +5,7 @@ class RegexAnySingleCharacter extends RegexPartBase {
   generateCorrectAnswer(): string {
     return RegexGenerator.getRandomCharFromCharSet(this.charSet)
   }
-  generatePossiblyWrongAnswer(lengthFactor: number, wrongChance: number): string {
+  generatePossiblyWrongAnswer(_lengthFactor: number, wrongChance: number): string {
     // there really is no wrong answer
     if (chance((1 - wrongChance * 0.2)))
       return this.generateCorrectAnswer()

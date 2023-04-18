@@ -11,7 +11,7 @@ let gameConfigurationBySearchQuery: GameConfiguration | undefined
 async function getGameConfigurationBySearchQuery(): Promise<GameConfiguration> {
   if (gameConfigurationBySearchQuery) return gameConfigurationBySearchQuery
   let id = new URLSearchParams(document.location.search).get("id")
-  if (!id) throw "no id specified"
+  if (!id) throw new Error("no id specified")
   gameConfigurationBySearchQuery = await fetchGameConfigration(id)
   return gameConfigurationBySearchQuery
 }

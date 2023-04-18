@@ -20,12 +20,12 @@ const answersContainer = document.querySelector("#answers")! as HTMLDivElement
 /**
  * The current Riddle displayed to the user.
  */
-var currentRiddle: Riddle | undefined
+let currentRiddle: Riddle | undefined
 
 /**
  * the current round
  */
-var round: number
+let round: number
 
 /**
  * Display a riddle to the user
@@ -68,9 +68,11 @@ function removeCurrentRiddle() {
 
 let nextAnswerTimeout: number | undefined
 function onAnswerSelected(button: HTMLButtonElement, answer: string) {
-  if (!currentRiddle) throw "current riddle undefined"
+  let correctAnswer: boolean
+
+  if (!currentRiddle) throw new Error("current riddle undefined")
   if (answersContainer.querySelector("button.selected")) {
-    let correctAnswer = answersContainer.querySelector("button.selected.correct") != undefined
+    correctAnswer = answersContainer.querySelector("button.selected.correct") != undefined
     if (correctAnswer && nextAnswerTimeout !== undefined) {
       clearTimeout(nextAnswerTimeout)
       nextAnswerTimeout = undefined
@@ -82,7 +84,7 @@ function onAnswerSelected(button: HTMLButtonElement, answer: string) {
   const riddleRegex: RegExp = currentRiddle.regex.generateRegExp()
   console.log("selected answer", riddleRegex, answer)
   const answerMatchesRiddle: boolean = riddleRegex.test(answer)
-  const correctAnswer = isRiddleSolved(answerMatchesRiddle, currentRiddle.riddleType)
+  correctAnswer = isRiddleSolved(answerMatchesRiddle, currentRiddle.riddleType)
   button.classList.add(correctAnswer ? "correct" : "incorrect")
   button.classList.add("selected")
   nextAnswerTimeout = setTimeout(() => {

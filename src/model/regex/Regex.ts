@@ -62,7 +62,7 @@ class Regex {
       case RegexStructure.DISJUNCTION:
         return new RegexDisjunction(charSet, nesting, allowedRegexStructures, complexity)
       default:
-        throw "cant generate regex structure " + getRegexStructureString(regexStructure)
+        throw new Error("cant generate regex structure " + getRegexStructureString(regexStructure))
     }
   }
 
@@ -80,7 +80,7 @@ class Regex {
       case undefined:
         return undefined
       default:
-        throw "cant generate regex quantifier " + getRegexStructureString(regexQuantifier)
+        throw new Error("cant generate regex quantifier " + getRegexStructureString(regexQuantifier))
     }
   }
 

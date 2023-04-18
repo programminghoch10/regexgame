@@ -48,7 +48,7 @@ button {
 
 p, h1, h2, h3, h4, h5, h6 {
   margin: 0;
-  font-family: auto;
+  font-family: auto, serif;
   white-space: normal;
   word-break: break-all;
 }

@@ -3,7 +3,7 @@ class RegexAtLeastOne extends RegexQuantifierBase {
   generateCorrectQuantification(lengthFactor: number): number {
     return getRandomIntegerInRange(1, lengthFactor)
   }
-  generateWrongQuantification(lengthFactor: number): number {
+  generateWrongQuantification(_lengthFactor: number): number {
     // zero is the only wrong quantification
     return 0
   }

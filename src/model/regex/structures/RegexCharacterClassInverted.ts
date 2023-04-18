@@ -12,7 +12,7 @@ class RegexCharacterClassInverted extends RegexCharacterClass {
     const possibleCharacters = [...this.charSet].filter(char => !this.chars.has(char))
     return getRandomElementFromArray(possibleCharacters)
   }
-  generatePossiblyWrongAnswer(lengthFactor: number, wrongChance: number): string {
+  generatePossiblyWrongAnswer(_lengthFactor: number, wrongChance: number): string {
     if (chance(1 - wrongChance))
       return this.generateCorrectAnswer()
     if (chance(0.05))
