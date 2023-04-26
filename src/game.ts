@@ -41,9 +41,21 @@ async function displayRiddle(riddle: Riddle) {
   riddle.answers.forEach(answer =>
     answersContainer.appendChild(generateAnswerButton(answer))
   )
+  const progress = calculateCompletionPercentage()
+  gameProgressBar.style.setProperty("--progress", progress * 100 + "%")
+  if (progress === 1) {
+    gameProgressBar.innerText = "Completed (free play)"
+  } else {
+    gameProgressBar.innerHTML = progress * 100 + "%"
+  }
   await gameBoxHeightTransitionEnd()
 }
 
+function calculateCompletionPercentage() {
+  return clamp(round / (gameConfigurationBySearchQuery ?? defaultConfiguration).minimumCompletedRounds, 0, 1)
+}
+
+const gameProgressBar = (document.querySelector("#gameprogress") as HTMLDivElement)!
 function nextRiddle() {
   round++
   try {

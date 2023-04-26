@@ -28,6 +28,7 @@ async function switchToStartPage() {
 }
 
 const scoreElement = document.querySelector("#startpage > h2#score")! as HTMLHeadingElement
+const scorePercentageElement = document.querySelector("#startpage > h3#scorepercentage") as HTMLHeadingElement
 function displayScore() {
   if (round == undefined || round <= 0) {
     startPageContainer.classList.remove("finished")
@@ -35,6 +36,7 @@ function displayScore() {
     return
   }
   scoreElement.innerText = `Score: ${round}`
+  scorePercentageElement.innerText = `Completion: ${calculateCompletionPercentage() * 100}%`
   startPageContainer.classList.add("finished")
   playButton.classList.add("again")
 }

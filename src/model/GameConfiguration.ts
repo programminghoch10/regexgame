@@ -7,6 +7,8 @@ class GameConfiguration {
 
   increaseComplexity: boolean = true
 
+  minimumCompletedRounds: number = 20
+
   answerCount: number = 3
 
   constructor(id: string, allowedRegexStructures: Set<RegexStructure>) {

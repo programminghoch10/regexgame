@@ -1,5 +1,7 @@
+p,
 h1,
-p {
+h2,
+.text-glow {
   text-shadow:
     0 0 1em currentColor,
     0 0 2em currentColor;
@@ -13,6 +15,10 @@ p {
 
 .box-glow-light {
   box-shadow: 0 0 1em currentColor;
+}
+
+.box-glow-lighter {
+  box-shadow: 0 0 0.5em currentColor;
 }
 
 .loading-animation::after {

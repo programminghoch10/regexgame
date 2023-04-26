@@ -9,14 +9,19 @@
   margin-bottom: 3rem;
 }
 
-#startpage > h2#score {
+#startpage > .score {
   display: none;
   margin: 1rem;
   margin-top: -2rem;
 }
 
-#startpage.finished > h2#score {
+#startpage.finished > .score {
   display: unset;
+}
+
+#startpage > #scorepercentage {
+  margin-top: -1.75rem;
+  color: #aaa;
 }
 
 #startpage #buttons {
