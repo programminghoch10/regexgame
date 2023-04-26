@@ -28,6 +28,20 @@ let currentRiddle: Riddle | undefined
 let round: number
 
 /**
+ * when the game has started
+ * used for calculating timeout
+ */
+var gameStartTimestamp: Date
+
+/**
+ * the handle of the setTimeout call for handling when the countdown runs out
+ */
+var countdownTimer: number
+
+const gameProgressBar = (document.querySelector("#gameprogress") as HTMLDivElement)!
+const timeoutProgressBar = (document.querySelector("#timeoutbar") as HTMLDivElement)!
+
+/**
  * Display a riddle to the user
  * @param riddle the riddle to display
  */
@@ -35,6 +49,8 @@ async function displayRiddle(riddle: Riddle) {
   await gameBoxHeightTransitionBegin()
   setHidden(startPageContainer, true)
   setHidden(gameContainer, false)
+  setHidden(timeoutProgressBar, (gameConfigurationBySearchQuery ?? defaultConfiguration).riddleTimeoutSeconds === 0)
+  timeoutProgressBar.classList.remove("countdown")
   removeCurrentRiddle()
   currentRiddle = riddle
   riddleRegexElement.innerText = riddle.regex.generate()
@@ -49,17 +65,25 @@ async function displayRiddle(riddle: Riddle) {
     gameProgressBar.innerHTML = progress * 100 + "%"
   }
   await gameBoxHeightTransitionEnd()
+  timeoutProgressBar.style.setProperty("--countdown", getRemainingTime() + "s")
+  timeoutProgressBar.classList.add("countdown")
+}
+
+function getRemainingTime() {
+  const remainingTime: number = (new Date().getTime() - gameStartTimestamp.getTime()) / 1000
+  return (gameConfigurationBySearchQuery ?? defaultConfiguration).riddleTimeoutSeconds * (round + 1) - remainingTime
 }
 
 function calculateCompletionPercentage() {
   return clamp(round / (gameConfigurationBySearchQuery ?? defaultConfiguration).minimumCompletedRounds, 0, 1)
 }
 
-const gameProgressBar = (document.querySelector("#gameprogress") as HTMLDivElement)!
-function nextRiddle() {
+async function nextRiddle() {
   round++
   try {
-    displayRiddle(generateRiddle(round))
+    await displayRiddle(generateRiddle(round))
+    if (countdownTimer > 0) clearTimeout(countdownTimer)
+    countdownTimer = setTimeout(gameEnd, getRemainingTime() * 1000)
   } catch (e) {
     console.error("error creating next riddle", e)
     //TODO: notify user?
@@ -83,6 +107,7 @@ function onAnswerSelected(button: HTMLButtonElement, answer: string) {
   let correctAnswer: boolean
 
   if (!currentRiddle) throw new Error("current riddle undefined")
+  if (countdownTimer > 0) clearTimeout(countdownTimer)
   if (answersContainer.querySelector("button.selected")) {
     correctAnswer = answersContainer.querySelector("button.selected.correct") != undefined
     if (correctAnswer && nextAnswerTimeout !== undefined) {
@@ -106,3 +131,9 @@ function onAnswerSelected(button: HTMLButtonElement, answer: string) {
       gameEnd()
   }, correctAnswer ? 1000 : 5000)
 }
+
+setInterval(() => {
+  if (!currentRiddle) return
+  if (answersContainer.querySelector("button.selected")) return
+  timeoutProgressBar.innerText = Math.max(getRemainingTime(), 0).toFixed(1) + "s"
+}, 100)
