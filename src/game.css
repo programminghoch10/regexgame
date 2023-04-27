@@ -78,5 +78,22 @@
   width: clamp(0%, var(--progress), 100%);
   height: 100%;
   background-color: green;
+}
+
+#gameprogress::before {
   transition: width ease-in-out 5s;
+}
+
+#timeoutbar {
+  margin-bottom: 1em;
+  --progress: 100%;
+  --countdown: 0s;
+}
+
+#timeoutbar.countdown {
+  --progress: 0%;
+}
+
+#timeoutbar.countdown::before {
+  transition: width linear var(--countdown);
 }

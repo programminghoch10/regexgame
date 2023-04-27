@@ -9,6 +9,13 @@ class GameConfiguration {
 
   minimumCompletedRounds: number = 20
 
+  /**
+   * how many seconds the user has to solve a given riddle
+   * the timeout will accumulate over the riddles,
+   * so the remaining time will be carried over to the next riddle
+   */
+  riddleTimeoutSeconds: number = 10
+
   answerCount: number = 3
 
   constructor(id: string, allowedRegexStructures: Set<RegexStructure>) {
