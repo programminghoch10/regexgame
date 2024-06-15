@@ -1,6 +1,6 @@
 body {
   height: auto;
-  min-height: 100vh;
+  min-height: 100svh;
   width: 100vw;
   padding: 2rem;
   padding-block: 2rem;
@@ -15,6 +15,7 @@ body {
   justify-content: center;
   gap: 0.5em;
   overflow-x: hidden;
+  overscroll-behavior-y: none;
 }
 
 body div.content-box {

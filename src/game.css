@@ -22,9 +22,11 @@
   transition: ease-out color 250ms;
 }
 
-/* highlight answer if no answer has been selected already */
-#answers:not(:has(.answer.selected)) .answer:hover {
-  color: #aaf;
+/* highlight answer if hovering and no answer has been selected already */
+@media (hover: hover) and (pointer: fine) {
+  #answers:not(:has(.answer.selected)) .answer:hover {
+    color: #aaf;
+  }
 }
 
 #answers:has(.answer.answer.selected) .answer:not(.selected) {

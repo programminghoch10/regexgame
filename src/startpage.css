@@ -7,6 +7,8 @@
 #startpage > h1 {
   margin: 1rem;
   margin-bottom: 3rem;
+  word-break: keep-all;
+  text-align: center;
 }
 
 #startpage > .score {
@@ -40,9 +42,11 @@
     ease-in-out scale 500ms;
 }
 
-#startpage .button:hover {
-  scale: 1.1;
-  filter: grayscale(0);
+@media (hover: hover) and (pointer: fine) {
+  #startpage .button:hover {
+    scale: 1.1;
+    filter: grayscale(0);
+  }
 }
 
 .button.green {
@@ -61,9 +65,11 @@
   cursor: not-allowed;
 }
 
-#playbutton.loading:hover {
-  filter: grayscale(0.75);
-  scale: unset;
+@media (hover: hover) and (pointer: fine) {
+  #playbutton.loading:hover {
+    filter: grayscale(0.75);
+    scale: unset;
+  }
 }
 
 #playbutton .loading-animation {
