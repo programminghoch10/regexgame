@@ -26,11 +26,15 @@
   color: #aaa;
 }
 
-#startpage #buttons {
+#startpage #buttons,
+#settings #buttons {
   margin: 1em;
   display: flex;
-  gap: 2em;
+  column-gap: 2em;
+  row-gap: 1em;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 #startpage .button {
