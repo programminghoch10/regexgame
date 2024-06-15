@@ -49,7 +49,7 @@ async function displayRiddle(riddle: Riddle) {
   await gameBoxHeightTransitionBegin()
   setHidden(startPageContainer, true)
   setHidden(gameContainer, false)
-  setHidden(timeoutProgressBar, (gameConfigurationBySearchQuery ?? defaultConfiguration).riddleTimeoutSeconds === 0)
+  setHidden(timeoutProgressBar, (defaultConfiguration).riddleTimeoutSeconds === 0)
   timeoutProgressBar.classList.remove("countdown")
   removeCurrentRiddle()
   currentRiddle = riddle
@@ -71,11 +71,11 @@ async function displayRiddle(riddle: Riddle) {
 
 function getRemainingTime() {
   const remainingTime: number = (new Date().getTime() - gameStartTimestamp.getTime()) / 1000
-  return (gameConfigurationBySearchQuery ?? defaultConfiguration).riddleTimeoutSeconds * (round + 1) - remainingTime
+  return (defaultConfiguration).riddleTimeoutSeconds * (round + 1) - remainingTime
 }
 
 function calculateCompletionPercentage() {
-  return clamp(round / (gameConfigurationBySearchQuery ?? defaultConfiguration).minimumCompletedRounds, 0, 1)
+  return clamp(round / (defaultConfiguration).minimumCompletedRounds, 0, 1)
 }
 
 async function nextRiddle() {
@@ -93,13 +93,7 @@ async function nextRiddle() {
 
 function gameEnd() {
   displayScore()
-  sendResult()
   switchToStartPage()
-}
-
-async function sendResult() {
-  if (gameConfigurationBySearchQuery!.id.length === 0) return
-  saveGameResult(gameConfigurationBySearchQuery!.id, calculateCompletionPercentage() * 100, round)
 }
 
 function removeCurrentRiddle() {

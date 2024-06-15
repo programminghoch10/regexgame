@@ -4,7 +4,6 @@ function sleep(ms: number): Promise<void> {
 }
 
 function quit() {
-  window.parent.postMessage("CLOSE ME", "*")
   window.close()
   round = 0
   displayScore()
@@ -43,13 +42,8 @@ function displayScore() {
 }
 
 async function load() {
-  try { await getGameConfigurationBySearchQuery() } catch { }
-  console.log("game configuration by id", gameConfigurationBySearchQuery)
-  if (!gameConfigurationBySearchQuery) {
-    console.info("no game configuration found!")
-    playButton.querySelector("h2")!.innerText = "Play"
-    //playButton.classList.add("offline")
-  }
+  // show the loading animation for a short time, because i really like it
+  await sleep(100)
   playButton.classList.remove("loading")
 }
 load()
