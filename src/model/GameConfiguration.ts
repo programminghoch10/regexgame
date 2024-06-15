@@ -7,7 +7,7 @@ class GameConfiguration {
 
   increaseComplexity: boolean = true
 
-  minimumCompletedRounds: number = 20
+  minimumCompletedRounds: number = 0
 
   /**
    * how many seconds the user has to solve a given riddle

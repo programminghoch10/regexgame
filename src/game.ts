@@ -50,6 +50,7 @@ async function displayRiddle(riddle: Riddle) {
   setHidden(startPageContainer, true)
   setHidden(gameContainer, false)
   setHidden(timeoutProgressBar, (defaultConfiguration).riddleTimeoutSeconds === 0)
+  setHidden(gameProgressBar, (defaultConfiguration).minimumCompletedRounds === 0)
   timeoutProgressBar.classList.remove("countdown")
   removeCurrentRiddle()
   currentRiddle = riddle

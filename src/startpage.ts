@@ -36,6 +36,7 @@ function displayScore() {
     return
   }
   scoreElement.innerText = `Score: ${round}`
+  setHidden(scorePercentageElement, (defaultConfiguration).minimumCompletedRounds === 0)
   scorePercentageElement.innerText = `Completion: ${calculateCompletionPercentage() * 100}%`
   startPageContainer.classList.add("finished")
   playButton.classList.add("again")
