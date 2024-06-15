@@ -1,0 +1,19 @@
+{
+  "name": "RegexGame",
+  "icons": [
+    {
+      "src": "logo.svg",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "black",
+  "theme_color": "black",
+  "categories": [
+    "games",
+    "education",
+    "entertainment"
+  ]
+}

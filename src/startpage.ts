@@ -3,11 +3,13 @@ function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
+const quitButton = document.querySelector("#quitbutton")! as HTMLHeadingElement
 function quit() {
   window.close()
   round = 0
   displayScore()
 }
+setHidden(quitButton, !(window.opener !== null || window.history.length === 1))
 
 const playButton = document.querySelector("#playbutton")! as HTMLButtonElement
 function play() {
@@ -48,3 +50,6 @@ async function load() {
   playButton.classList.remove("loading")
 }
 load()
+
+if ("serviceWorker" in navigator)
+  navigator.serviceWorker.register("serviceworker.js")
