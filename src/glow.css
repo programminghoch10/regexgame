@@ -1,27 +1,27 @@
-p,
-h1,
-h2,
-.text-glow {
+body.glow p,
+body.glow h1,
+body.glow h2,
+body.glow .text-glow {
   text-shadow:
     0 0 1em currentColor,
     0 0 2em currentColor;
 }
 
-.box-glow {
+body.glow .box-glow {
   box-shadow:
     0 0 5em currentColor,
     0 0 1em currentColor inset;
 }
 
-.box-glow-light {
+body.glow .box-glow-light {
   box-shadow: 0 0 1em currentColor;
 }
 
-.box-glow-lighter {
+body.glow .box-glow-lighter {
   box-shadow: 0 0 0.5em currentColor;
 }
 
-.loading-animation::after {
+body.glow .loading-animation::after {
   box-shadow:
     0 1.5em 2em -0.75em currentColor,
     0 -1.5em 2em -0.75em currentColor;

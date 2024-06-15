@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="startpage.css">
     <link rel="stylesheet" href="game.css">
-    <link rel="stylesheet" href="glow.css">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/svg+xml" href="logo.svg">
     <meta name="theme-color" content="black">
@@ -43,9 +42,11 @@
     <script src="settings.js" defer></script>
     <script src="startpage.js" defer></script>
     <title>RegexGame</title>
+    <link rel="preload" href="glow.css" as="style"
+          onload="this.rel='stylesheet'">
   </head>
 
-  <body>
+  <body class="glow">
     <div class="box-glow game-box">
       <div id="startpage" class="content-box">
         <h1>Regex<wbr>Game</h1>
@@ -109,6 +110,19 @@
           <tr id="settings-minimumCompletedRounds" onclick="modifySetting(this)">
             <td>Target Rounds</td>
             <td></td>
+          </tr>
+          <tr id="glow" onclick="changeGlow()">
+            <td>Glow</td>
+            <td id="glowvalue"></td>
+            <style>
+              body.glow #settings #glowvalue::after {
+                content: "Enabled";
+              }
+
+              body:not(.glow) #settings #glowvalue::after {
+                content: "Disabled";
+              }
+            </style>
           </tr>
           <!--
             <tr id="settings-complexity" onclick="modifySetting(this)">
