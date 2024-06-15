@@ -48,7 +48,7 @@ async function load() {
   if (!gameConfigurationBySearchQuery) {
     console.info("no game configuration found!")
     playButton.querySelector("h2")!.innerText = "Play"
-    playButton.classList.add("offline")
+    //playButton.classList.add("offline")
   }
   playButton.classList.remove("loading")
 }
