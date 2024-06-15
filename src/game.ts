@@ -71,6 +71,8 @@ async function displayRiddle(riddle: Riddle) {
 }
 
 function getRemainingTime() {
+  if ((defaultConfiguration).riddleTimeoutSeconds === 0)
+    return Infinity
   const remainingTime: number = (new Date().getTime() - gameStartTimestamp.getTime()) / 1000
   return (defaultConfiguration).riddleTimeoutSeconds * (round + 1) - remainingTime
 }
@@ -84,7 +86,8 @@ async function nextRiddle() {
   try {
     await displayRiddle(generateRiddle(round))
     if (countdownTimer > 0) clearTimeout(countdownTimer)
-    countdownTimer = setTimeout(gameEnd, getRemainingTime() * 1000)
+    if ((defaultConfiguration).riddleTimeoutSeconds > 0)
+      countdownTimer = setTimeout(gameEnd, getRemainingTime() * 1000)
   } catch (e) {
     console.error("error creating next riddle", e)
     //TODO: notify user?
