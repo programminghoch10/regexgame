@@ -49,8 +49,9 @@ async function displayRiddle(riddle: Riddle) {
   await gameBoxHeightTransitionBegin()
   setHidden(startPageContainer, true)
   setHidden(gameContainer, false)
-  setHidden(timeoutProgressBar, (defaultConfiguration).riddleTimeoutSeconds === 0)
-  setHidden(gameProgressBar, (defaultConfiguration).minimumCompletedRounds === 0)
+  setHidden(settingsContainer, true)
+  setHidden(timeoutProgressBar, (savedConfiguration ?? defaultConfiguration).riddleTimeoutSeconds === 0)
+  setHidden(gameProgressBar, (savedConfiguration ?? defaultConfiguration).minimumCompletedRounds === 0)
   timeoutProgressBar.classList.remove("countdown")
   removeCurrentRiddle()
   currentRiddle = riddle
@@ -71,22 +72,22 @@ async function displayRiddle(riddle: Riddle) {
 }
 
 function getRemainingTime() {
-  if ((defaultConfiguration).riddleTimeoutSeconds === 0)
+  if ((savedConfiguration ?? defaultConfiguration).riddleTimeoutSeconds === 0)
     return Infinity
   const remainingTime: number = (new Date().getTime() - gameStartTimestamp.getTime()) / 1000
-  return (defaultConfiguration).riddleTimeoutSeconds * (round + 1) - remainingTime
+  return (savedConfiguration ?? defaultConfiguration).riddleTimeoutSeconds * (round + 1) - remainingTime
 }
 
 function calculateCompletionPercentage() {
-  return clamp(round / (defaultConfiguration).minimumCompletedRounds, 0, 1)
+  return clamp(round / (savedConfiguration ?? defaultConfiguration).minimumCompletedRounds, 0, 1)
 }
 
 async function nextRiddle() {
   round++
   try {
-    await displayRiddle(generateRiddle(round))
+    await displayRiddle(generateRiddle(round, (savedConfiguration ?? defaultConfiguration)))
     if (countdownTimer > 0) clearTimeout(countdownTimer)
-    if ((defaultConfiguration).riddleTimeoutSeconds > 0)
+    if ((savedConfiguration ?? defaultConfiguration).riddleTimeoutSeconds > 0)
       countdownTimer = setTimeout(gameEnd, getRemainingTime() * 1000)
   } catch (e) {
     console.error("error creating next riddle", e)

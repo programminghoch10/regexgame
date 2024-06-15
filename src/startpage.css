@@ -36,6 +36,9 @@
 #startpage .button {
   padding-inline: 3em;
   padding-block: 1em;
+}
+
+#startpage .button, #settings .button {
   filter: grayscale(0.25);
   transition:
     ease-out filter 250ms,
@@ -43,10 +46,16 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  #startpage .button:hover {
+
+  #startpage .button:hover,
+  #settings .button:hover {
     scale: 1.1;
     filter: grayscale(0);
   }
+}
+
+.button h2 {
+  word-break: keep-all;
 }
 
 .button.green {
@@ -55,6 +64,10 @@
 
 .button.red {
   color: #d00;
+}
+
+.button.blue {
+  color: aqua;
 }
 
 #playbutton {
@@ -126,4 +139,36 @@
   100% {
     rotate: 360deg;
   }
+}
+
+#settings {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  align-items: center;
+}
+
+#settings > #settingssavebutton {
+  width: fit-content;
+}
+
+#settings > h2 {
+  text-align: center;
+}
+
+#settings > table {
+  border-collapse: collapse;
+}
+
+#settings > table tr {
+  border: 1px solid white;
+}
+
+#settings > table td {
+  padding: 0.5em 2em;
+}
+
+#settings > table td:nth-child(2) {
+  border-left: 1px solid #fff8;
+  text-align: center;
 }

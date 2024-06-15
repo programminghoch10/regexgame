@@ -36,11 +36,12 @@
     <script src="model/Riddle.js" defer></script>
     <script src="model/GameConfiguration.js" defer></script>
     <script src="gameboxtransition.js" defer></script>
-    <script src="startpage.js" defer></script>
     <script src="generators/RegexGenerator.js" defer></script>
     <script src="generators/RegexAnswerGenerator.js" defer></script>
     <script src="generators/riddlegenerator.js" defer></script>
     <script src="game.js" defer></script>
+    <script src="settings.js" defer></script>
+    <script src="startpage.js" defer></script>
     <title>RegexGame</title>
   </head>
 
@@ -58,6 +59,11 @@
             <h2>Play</h2>
             <p id="offline">Offline</p>
             <p id="again">Again</p>
+          </button>
+          <button id="settingsbutton"
+                  class="button box-glow-light blue"
+                  onclick="switchToSettings()">
+            <h2>Settings</h2>
           </button>
           <button id="quitbutton"
                   class="button box-glow-light red"
@@ -88,6 +94,41 @@
           </button>
         </div>
         <div id="gameprogress" class="progressbar box-glow-lighter text-glow"></div>
+      </div>
+      <div id="settings" class="content-box hidden">
+        <h2>Settings</h2>
+        <table>
+          <tr id="settings-riddleTimeoutSeconds" onclick="modifySetting(this)">
+            <td>Riddle Timeout</td>
+            <td></td>
+          </tr>
+          <tr id="settings-answerCount" onclick="modifySetting(this)">
+            <td>Amount of Answers</td>
+            <td></td>
+          </tr>
+          <tr id="settings-minimumCompletedRounds" onclick="modifySetting(this)">
+            <td>Target Rounds</td>
+            <td></td>
+          </tr>
+          <!--
+            <tr id="settings-complexity" onclick="modifySetting(this)">
+              <td>Complexity</td>
+              <td></td>
+            </tr>
+          -->
+        </table>
+        <div id="buttons">
+          <button id="settingsresetbutton"
+                  class="button box-glow-light red"
+                  onclick="resetSettings()">
+            <h2>Reset</h2>
+          </button>
+          <button id="settingssavebutton"
+                  class="button box-glow-light green"
+                  onclick="saveSettings()">
+            <h2>Save</h2>
+          </button>
+        </div>
       </div>
     </div>
   </body>

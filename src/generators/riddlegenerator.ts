@@ -3,7 +3,7 @@
  * Default configuration for offline gameplay,
  * if no game configuration id has been provided in the search query
  */
-const defaultConfiguration: GameConfiguration = new GameConfiguration("", new Set<RegexStructure>([
+const defaultConfiguration: GameConfiguration = new GameConfiguration(new Set<RegexStructure>([
   RegexStructure.SINGLE_CHARACTER,
   RegexStructure.CHARACTER_SEQUENCE,
   RegexStructure.GROUP,

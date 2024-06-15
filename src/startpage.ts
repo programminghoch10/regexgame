@@ -22,10 +22,12 @@ function play() {
 const globalContainer = document.querySelector("body > div.game-box")! as HTMLDivElement
 const startPageContainer = document.querySelector("#startpage")! as HTMLDivElement
 const gameContainer = document.querySelector("#game")! as HTMLDivElement
+const settingsContainer = document.querySelector("#settings")! as HTMLDivElement
 async function switchToStartPage() {
   await gameBoxHeightTransitionBegin()
   setHidden(startPageContainer, false)
   setHidden(gameContainer, true)
+  setHidden(settingsContainer, true)
   await gameBoxHeightTransitionEnd()
 }
 
@@ -38,13 +40,14 @@ function displayScore() {
     return
   }
   scoreElement.innerText = `Score: ${round}`
-  setHidden(scorePercentageElement, (defaultConfiguration).minimumCompletedRounds === 0)
+  setHidden(scorePercentageElement, (savedConfiguration ?? defaultConfiguration).minimumCompletedRounds === 0)
   scorePercentageElement.innerText = `Completion: ${calculateCompletionPercentage() * 100}%`
   startPageContainer.classList.add("finished")
   playButton.classList.add("again")
 }
 
 async function load() {
+  loadSettings()
   // show the loading animation for a short time, because i really like it
   await sleep(100)
   playButton.classList.remove("loading")
