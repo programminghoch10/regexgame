@@ -1,8 +1,16 @@
-# regexgame
+<div align=center>
+  <h1>regexgame</h1>
+  <a href="https://programminghoch10.github.io/regexgame">
+    <img style="width: 25%;" src="src/logo.svg">
+    <br>
+    Click to play
+  </a>
+  <br>
+  <br>
+</div>
 
-This game aims to improve a users understanding of regexes.
+A small game where the user is given a regex and has to decide which answer matches the given regex.
 
-[Click here to play](https://programminghoch10.github.io/regexgame)
 
 This instance has been detached from its
 [original place](https://github.com/Gamify-IT/regexgame)
